@@ -3,4 +3,52 @@
 .leftColumn{
   width: 26%;
   background-color: grey;
+  height: 100%;
+  text-align: center;
+  border-right: 2px solid black;
+
+  .menuTitleBox{
+    height: 35%;
+    background-color: red;
+    border-bottom: 2px solid black;
+
+    display: flex ;
+    flex-direction: column ;
+    flex-wrap: wrap ;
+    justify-content: center ;
+    align-items: center ;
+    align-content: center ;
+
+
+    .menuTitle{
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .menuDesc{
+
+    }
+  } // Fin menuTitleBox
+
+  .menuBtnsBox{
+    height: 65%;
+    background-color: purple;
+
+    display: flex ;
+    flex-direction: column ;
+    flex-wrap: nowrap ;
+    justify-content: center ;
+    align-items: center ;
+    align-content: space-between ;
+
+    button:nth-child(1){
+      margin-bottom: 20%;
+    }
+    button{
+      min-width: 30%;
+      min-height: 12%;
+      font-size:19px;
+    }
+
+  }
+
 }

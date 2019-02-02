@@ -1,12 +1,21 @@
 <div class="leftColumn">
 
   <!-- Title -->
-  <div>
-    Welcome to Shipway
+  <div class="menuTitleBox">
+    <div class="menuTitle">
+      Welcome to Shipway
+    </div>
+    <div class="menuDesc">
+      A new way to play a ship game.
+    </div>
   </div>
 
   <!-- buttons -->
-  <div>
+  <div class="menuBtnsBox">
+
+    <button mat-raised-button (input)="playGame($event)">Play Game</button>
+
+    <button mat-raised-button>Quit Game</button>
 
   </div>
 
