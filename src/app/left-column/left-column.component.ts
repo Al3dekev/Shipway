@@ -15,6 +15,10 @@ export class LeftColumnComponent implements OnInit {
 
 
   playGame(){
+    console.log("ça marche");
+  };
+
+  leaveGame(){
 
   };
 
