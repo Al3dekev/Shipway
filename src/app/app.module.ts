@@ -8,12 +8,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from "@angular/material";
 
-import { LeftColumnComponent } from './left-column/left-column.component';
-import { GameConfigurationComponent } from './game-configuration/game-configuration.component';
-import { GameStartedComponent } from './game-started/game-started.component';
-import { GamePlateauComponent } from './game-plateau/game-plateau.component';
-import { PlayerShipComponent } from './player-ship/player-ship.component';
-import { EnemyShipComponent } from './enemy-ship/enemy-ship.component';
+import { LeftColumnComponent } from './components/left-column/left-column.component';
+import { GameConfigurationComponent } from './components/game-configuration/game-configuration.component';
+import { GameStartedComponent } from './components/game-started/game-started.component';
+import { GamePlateauComponent } from './components/game-plateau/game-plateau.component';
+import { PlayerShipComponent } from './components/player-ship/player-ship.component';
+import { EnemyShipComponent } from './components/enemy-ship/enemy-ship.component';
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import { EnemyShipComponent } from './enemy-ship/enemy-ship.component';
     MatListModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

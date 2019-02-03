@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IpcService} from "../../services/ipc.service";
 
 @Component({
   selector: 'app-left-column',
@@ -11,7 +12,9 @@ export class LeftColumnComponent implements OnInit {
   MenuButtons:String[];
   GameConfStatSel:Number=1;
 
-  constructor() { }
+  constructor(private readonly _ipc: IpcService) {
+
+  }
 
 
   playGame(){
@@ -19,7 +22,7 @@ export class LeftColumnComponent implements OnInit {
   };
 
   leaveGame(){
-
+    this._ipc.send('close-app');
   };
 
 
@@ -44,6 +47,12 @@ export class LeftColumnComponent implements OnInit {
     this.GameConfStatSel=set;
   }
 
+/*  getIpc(){
+    return this.ipc;
+  }
+  setIpc(set){
+    this.ipc=set;
+  }*/
 
 
   ngOnInit() {

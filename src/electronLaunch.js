@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+import {ipcRenderer} from "electron";
+
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 let win;
@@ -35,3 +37,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on('close-app', () => {
+  app.quit()
+});
