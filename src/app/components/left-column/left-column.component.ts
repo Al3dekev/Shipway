@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IpcService} from "../../services/ipc.service";
+import {PlayGameService} from "../../services/play-game.service";
 
 @Component({
   selector: 'app-left-column',
@@ -10,21 +11,38 @@ export class LeftColumnComponent implements OnInit {
 
   GameTitle:String;
   MenuButtons:String[];
-  GameConfStatSel:Number=1;
+  EnteringConfigMenuLc:boolean=false;
 
-  constructor(private readonly _ipc: IpcService) {
+  constructor(private readonly _ipc: IpcService, private pgs:PlayGameService) {
 
   }
 
 
   playGame(){
-    console.log("ça marche");
+
+    this.setEnteringConfigMenuLc(true);
+
+    this.pgs.setEnteringConfigMenu(this.getEnteringConfigMenuLc());
+
+    this.checkIfInsideConfigMenu();
+  console.log(this.EnteringConfigMenuLc)
+
+/*    let mainAppClass = document.querySelector("div.mainAppClass");
+    let gameConfig = document.createElement("app-game-configuration");
+    mainAppClass.appendChild(gameConfig);*/
   };
 
   leaveGame(){
     this._ipc.send('close-app');
   };
 
+  checkIfInsideConfigMenu(){
+/*    if(this.pgs.getEnteringConfigMenu()){
+
+    }else{
+
+    }*/
+  }
 
   getGameTitle(){
     return this.GameTitle;
@@ -40,19 +58,13 @@ export class LeftColumnComponent implements OnInit {
     this.MenuButtons = set;
   }
 
-  getGameConfStatSel(){
-    return this.GameConfStatSel;
-  }
-  setGameConfStatSel(set){
-    this.GameConfStatSel=set;
-  }
 
-/*  getIpc(){
-    return this.ipc;
+  getEnteringConfigMenuLc(){
+    return this.EnteringConfigMenuLc;
   }
-  setIpc(set){
-    this.ipc=set;
-  }*/
+  setEnteringConfigMenuLc(set){
+    this.EnteringConfigMenuLc=set;
+  }
 
 
   ngOnInit() {

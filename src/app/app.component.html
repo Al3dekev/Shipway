@@ -1,6 +1,7 @@
-<div class="divdiv">
+<div class="mainAppClass">
   <app-left-column></app-left-column>
 
+  <app-game-configuration *ngIf="pgs.getEnteringConfigMenu()"></app-game-configuration>
 
 
 <router-outlet></router-outlet>
