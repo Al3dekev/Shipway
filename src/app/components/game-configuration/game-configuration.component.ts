@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import{ PlayGameService} from "../../services/play-game.service";
+
 @Component({
   selector: 'app-game-configuration',
   templateUrl: './game-configuration.component.html',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameConfigurationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pgs:PlayGameService) {
+
+  }
+
+
+  BackButton(){
+    this.pgs.setEnteringConfigMenu(false);
+  }
+
+
 
   ngOnInit() {
   }

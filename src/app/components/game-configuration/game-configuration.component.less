@@ -1,12 +1,122 @@
 
 
-.gameConfigClass{
 
-  .upperCard{
 
+  .upperCard {
+    border-bottom:1px solid black;
+    height: 10%;
+
+    .ucZone1 {
+      display: inline-block;
+      text-align: center;
+      margin: 10px 0;
+      width: 20%;
+
+    }
+
+    .ucZone1:nth-child(2) {
+      width: 80%;
+      font-size: 23px;
+    }
   }
+
 
   .lowerForm{
+    margin: 0px 260px 0px 50px;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+
+    background-color: aquamarine;
+
+    .FormElUn{
+
+    }
+
+    .FormElDeux{
+      width: 100%;
+
+      mat-radio-group{
+        width: 100%;
+        display: flex ;
+        flex-direction: row ;
+        flex-wrap: wrap ;
+        justify-content: space-around ;
+        align-items: center ;
+        align-content: center ;
+      }
+
+      div{
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+
+    }
+
+    .FormElTrois{
+      text-align: right;
+      margin-right: 10%;
+    }
+
+
+
+    .ShipNameInput{
+
+      width: 220px;
+
+    }
+
+
+
+
+
+
 
   }
-}
+
+  mat-form-field{
+
+  }
+
+  mat-radio-group{
+
+  }
+
+  .blackline{
+    border:2px solid black;
+    margin: 5px;
+  }
+
+
+  /deep/ .selColor1 .mat-radio-label {
+    flex-direction: column ;
+    display: flex ;
+  }
+/*  /deep/ .selColor2 .mat-radio-label {
+    flex-direction: column ;
+    display: flex ;
+  }*/
+
+
+      .color1 {
+        display: inline-block;
+        background-color: purple;
+        border-radius: 50%;
+        /* max-width: 20px; */
+        min-width: 50px;
+        min-height: 50px;
+      }
+  .color2 {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: red;
+    min-width: 50px;
+    min-height: 50px;
+  }
+
+
+    .mat-radio-container {
+      display: block;
+    }
+

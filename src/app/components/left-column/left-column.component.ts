@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {IpcService} from "../../services/ipc.service";
 import {PlayGameService} from "../../services/play-game.service";
+//import {appendChild} from "@angular/core/src/render3/node_manipulation";
+
 
 @Component({
   selector: 'app-left-column',
@@ -11,24 +13,35 @@ export class LeftColumnComponent implements OnInit {
 
   GameTitle:String;
   MenuButtons:String[];
-  EnteringConfigMenuLc:boolean=false;
 
-  constructor(private readonly _ipc: IpcService, private pgs:PlayGameService) {
+  constructor(private readonly _ipc: IpcService, private pgs:PlayGameService, private rend:Renderer2) {
 
   }
 
 
   playGame(){
 
-    this.setEnteringConfigMenuLc(true);
 
-    this.pgs.setEnteringConfigMenu(this.getEnteringConfigMenuLc());
+    this.pgs.setEnteringConfigMenu(true);
 
-    this.checkIfInsideConfigMenu();
-  console.log(this.EnteringConfigMenuLc)
+/*// voir pour ajout dans une methode séparé
+    /!*if(this.pgs.getEnteringConfigMenu()){*!/
+    document.createElement("div").setAttribute("id","LeftColumnWhenGameConfigEnabled");
+    let div = document.querySelector("#LeftColumnWhenGameConfigEnabled");
+      let LeftCol = document.querySelector(".leftColumn");
+      let mainApp = document.querySelector(".mainAppClass");
 
-/*    let mainAppClass = document.querySelector("div.mainAppClass");
-    let gameConfig = document.createElement("app-game-configuration");
+      //let addedMainApp = docuent.body.appendChild(mainApp);m
+      this.rend.appendChild(mainApp,div);
+      //this.rend.appendChild(div,LeftCol);
+
+    /!*}else{
+
+    }*!/*/
+
+
+   /* let mainAppClass = document.querySelector("div.mainAppClass");
+   /* let gameConfig = document.createElement("app-game-configuration");
     mainAppClass.appendChild(gameConfig);*/
   };
 
@@ -36,13 +49,7 @@ export class LeftColumnComponent implements OnInit {
     this._ipc.send('close-app');
   };
 
-  checkIfInsideConfigMenu(){
-/*    if(this.pgs.getEnteringConfigMenu()){
 
-    }else{
-
-    }*/
-  }
 
   getGameTitle(){
     return this.GameTitle;
@@ -56,14 +63,6 @@ export class LeftColumnComponent implements OnInit {
   }
   setMenuButtons(set){
     this.MenuButtons = set;
-  }
-
-
-  getEnteringConfigMenuLc(){
-    return this.EnteringConfigMenuLc;
-  }
-  setEnteringConfigMenuLc(set){
-    this.EnteringConfigMenuLc=set;
   }
 
 

@@ -1,18 +1,46 @@
-<div class="gameConfigClass">
-yrsty
+
   <div class="upperCard">
 
-    <div>
-      <button mat-raised-button>◄ Retour</button>
+    <div class="ucZone1">
+      <button mat-raised-button (click)="BackButton()">◄ Retour</button>
+    </div>
+
+    <div class="ucZone1">
+      Paramètrage de la Partie
     </div>
 
   </div>
 
 
   <form class="lowerForm">
-    <mat-form-field class="">
-      <input matInput placeholder="What's your Ship's Name?">
-    </mat-form-field>
+
+
+    <div class="FormElUn">
+      <mat-form-field class="ShipNameInput">
+        <input matInput placeholder="What's your Ship's Name?">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="FormElDeux">
+
+      <div>What's your Team Color?</div>
+
+      <mat-radio-group>
+        <mat-radio-button class="selColor1" value="1">
+          <mat-label class="color1"></mat-label>
+        </mat-radio-button>
+        <mat-radio-button class="selColor1" value="2">
+          <mat-label class="color2"></mat-label>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="FormElTrois">
+      <button mat-raised-button>Start Game</button>
+    </div>
 
   </form>
-</div>
