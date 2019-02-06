@@ -12,13 +12,15 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 import { LeftColumnComponent } from './components/left-column/left-column.component';
 import { GameConfigurationComponent } from './components/game-configuration/game-configuration.component';
-import { GameStartedComponent } from './components/game-started/game-started.component';
-import { GamePlateauComponent } from './components/game-plateau/game-plateau.component';
 import { PlayerShipComponent } from './components/player-ship/player-ship.component';
 import { EnemyShipComponent } from './components/enemy-ship/enemy-ship.component';
 
 import {PlayGameService} from "./services/play-game.service";
 import {IpcService} from "./services/ipc.service";
+import { GameStartedComponent } from './components/plateau/game-started/game-started.component';
+import { PlateauComponent } from './components/plateau/plateau/plateau.component';
+import { AlertBoxComponent } from './components/plateau/alert-box/alert-box.component';
+import { ActionBoxComponent } from './components/plateau/action-box/action-box.component';
 
 
 @NgModule({
@@ -26,10 +28,12 @@ import {IpcService} from "./services/ipc.service";
     AppComponent,
     LeftColumnComponent,
     GameConfigurationComponent,
-    GameStartedComponent,
-    GamePlateauComponent,
     PlayerShipComponent,
     EnemyShipComponent,
+    GameStartedComponent,
+    PlateauComponent,
+    AlertBoxComponent,
+    ActionBoxComponent,
   ],
   imports: [
     BrowserModule,
