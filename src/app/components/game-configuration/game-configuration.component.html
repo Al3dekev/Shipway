@@ -12,12 +12,12 @@
   </div>
 
 
-  <form class="lowerForm">
+  <form class="lowerForm" [formGroup]="gameForm" (ngSubmit)="startGameBtn()">
 
 
     <div class="FormElUn">
       <mat-form-field class="ShipNameInput">
-        <input matInput placeholder="What's your Ship's Name?">
+        <input formControlName="shipName" matInput placeholder="What's your Ship's Name?">
       </mat-form-field>
     </div>
 
@@ -27,12 +27,12 @@
 
       <div>What's your Team Color?</div>
 
-      <mat-radio-group>
-        <mat-radio-button class="selColor1" value="1">
-          <mat-label class="color1"></mat-label>
+      <mat-radio-group #rGroup formControlName="shipColor">
+        <mat-radio-button radioGroup="rGroup" class="selColor1" value="{{colorType1}}">
+          <mat-label [ngStyle]="{'background-color':colorType1}" class="color1"></mat-label>
         </mat-radio-button>
-        <mat-radio-button class="selColor1" value="2">
-          <mat-label class="color2"></mat-label>
+        <mat-radio-button radioGroup="rGroup" class="selColor1" value="{{colorType2}}">
+          <mat-label [ngStyle]="{'background-color':colorType2}" class="color2"></mat-label>
         </mat-radio-button>
       </mat-radio-group>
     </div>
@@ -40,7 +40,7 @@
     <mat-divider></mat-divider>
 
     <div class="FormElTrois">
-      <button mat-raised-button>Start Game</button>
+      <button mat-raised-button type="submit" [disabled]="!gameForm.valid">Start Game</button>
     </div>
 
   </form>
