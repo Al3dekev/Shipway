@@ -4,5 +4,7 @@
   <app-game-configuration class="gameConfigClass" *ngIf="pgs.getEnteringConfigMenu()"></app-game-configuration>
   <app-game-started class="gameStartedClass" *ngIf="pgs.getStartTheGame()"></app-game-started>
 
+  <div class="MainMenuImgClass" *ngIf="!pgs.getStartTheGame() && !pgs.getEnteringConfigMenu()">You welcome to put a img here</div>
+
 
 <router-outlet></router-outlet>
