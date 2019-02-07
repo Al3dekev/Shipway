@@ -13,13 +13,11 @@ export class GameConfigurationComponent implements OnInit {
 
 
 
-  private _shipName:string="Normandy";
-  private _shipColor:string;
   private _colorType1:string="#6fdbd5";
   private _colorType2:string="#dd71bf";
 
   gameForm = new FormGroup({
-    shipName: new FormControl(this.shipName),
+    shipName: new FormControl("Normandy"),
     shipColor: new FormControl(this.colorType1),
     //Remplacer vars de la classe par celles du formcontrol
   });
@@ -35,9 +33,6 @@ export class GameConfigurationComponent implements OnInit {
   }
 
   startGameBtn(){
-    //DEV TEST
-    console.log(this.shipColor);
-    console.log(this.shipName);
 
     //PROD MODE
     /*this.pgs.setEnteringConfigMenu(false);
@@ -49,24 +44,11 @@ export class GameConfigurationComponent implements OnInit {
   }
 
   clickTestColor(){
-    console.log(this.shipColor);
+    console.log(this.gameForm.value);
+    console.log(this.gameForm.value.shipName);
+    console.log(this.gameForm.value.shipColor);
   }
 
-  get shipName(): string {
-    return this._shipName;
-  }
-
-  set shipName(value: string) {
-    this._shipName = value;
-  }
-
-  get shipColor(): string {
-    return this._shipColor;
-  }
-
-  set shipColor(value: string) {
-    this._shipColor = value;
-  }
 
   get colorType1(): string {
     return this._colorType1;
@@ -82,26 +64,16 @@ export class GameConfigurationComponent implements OnInit {
     this._colorType2 = value;
   }
 
-/*  getShipName(){
-    return this.shipName;
-  }
-  setShipname(set){
-    this.shipName=set;
+
+  //about form
+  get shipName(){
+    return this.gameForm.value.shipName;
   }
 
-  getShipColor(){
-    return this.shipColor;
-  }
-  setShipColor(set){
-    this.shipColor=set;
+  get shipColor(){
+    return this.gameForm.value.shipColor;
   }
 
-  getColorType1(){
-    return this.colorType1;
-  }
-  setColorType1(set){
-    this.colorType1=set;
-  }*/
 
   ngOnInit() {
   }

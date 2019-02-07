@@ -12,7 +12,7 @@
   </div>
 
 
-  <form class="lowerForm" [formGroup]="gameForm" (ngSubmit)="startGameBtn()">
+  <form class="lowerForm" [formGroup]="gameForm" (ngSubmit)="clickTestColor()">
 
 
     <div class="FormElUn">
@@ -40,7 +40,7 @@
     <mat-divider></mat-divider>
 
     <div class="FormElTrois">
-      <button mat-raised-button type="submit" [disabled]="!gameForm.valid">Start Game</button>
+      <button mat-raised-button type="submit" [disabled]="!gameForm.valid" (onclick)="clickTestColor()">Start Game</button>
     </div>
 
   </form>
