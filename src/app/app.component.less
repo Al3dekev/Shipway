@@ -1,7 +1,11 @@
 
+@smallArea:25%;
+@bigArea:74%;
+
+
   .leftColumn{
       transition:3s;
-      flex-basis: 25%;
+      flex-basis: @smallArea;
       background-color: grey;
       height: 100%;
       text-align: center;
@@ -10,11 +14,16 @@
   }
 
   .gameConfigClass {
-    flex-basis: 74%;
+    flex-basis: @bigArea;
     background-color: whitesmoke;
     height: 100%;
     display: inline-block;
     transition:3s;
+  }
+
+  .gameStartedClass{
+    height:100%;
+    width:@bigArea ;
   }
 
 

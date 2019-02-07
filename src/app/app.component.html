@@ -2,6 +2,7 @@
   <app-left-column class="leftColumn"></app-left-column>
 
   <app-game-configuration class="gameConfigClass" *ngIf="pgs.getEnteringConfigMenu()"></app-game-configuration>
+  <app-game-started class="gameStartedClass" *ngIf="pgs.getStartTheGame()"></app-game-started>
 
 
 <router-outlet></router-outlet>
