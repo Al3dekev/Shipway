@@ -9,10 +9,9 @@ export class PlateauComponent implements OnInit {
 
 
 
-
-
   private _plateauSize:number[] = [5,5];
   private _plateauDynamicallySize: Array<{id:number,status:number}> = [];
+  private _cssGridColumnNumber:number;
 
 
 
@@ -25,6 +24,10 @@ export class PlateauComponent implements OnInit {
   transformPlateau(){
     let col = this.plateauSize[0];
     let row = this.plateauSize[1];
+
+    this._cssGridColumnNumber = this.plateauSize[0];
+
+
 
     let i = 0;
     let j = 0;
@@ -51,16 +54,16 @@ export class PlateauComponent implements OnInit {
   }
 
 
-  get plateauDynamicallySize(): Array<{ id: number; status: number }> {
-    return this._plateauDynamicallySize;
-  }
-
-  set plateauDynamicallySize(value: Array<{ id: number; status: number }>) {
-    this._plateauDynamicallySize = value;
-  }
 
   shipMoving(){
 
+  }
+
+  cssGridProperties(){
+    let gridProperties = {
+      "grid-template-columns":"repeat("+this.cssGridColumnNumber+",auto)"
+    };
+    return gridProperties;
   }
 
 
@@ -72,33 +75,40 @@ export class PlateauComponent implements OnInit {
     this._plateauSize = value;
   }
 
-  /*
+  get cssGridColumnNumber(): number {
+    return this._cssGridColumnNumber;
+  }
 
+  set cssGridColumnNumber(value: number) {
+    this._cssGridColumnNumber = value;
+  }
+
+  get plateauDynamicallySize(): Array<{ id: number; status: number }> {
+    return this._plateauDynamicallySize;
+  }
+
+  set plateauDynamicallySize(value: Array<{ id: number; status: number }>) {
+    this._plateauDynamicallySize = value;
+  }
+  /*
     /!***
      * in tab,
      * 0: free square space
      * 1:ship in there
      *!/
     transformPlateau(){ // IN ARRAY
-
       let col = this.plateauSize[0];
       let row = this.plateauSize[1];
-
       console.log("varcol: "+col);
       console.log("varrow: "+row);
-
       // Should be updated to be more dynamic. That is the simplest solution
       //let tab:number[][] = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]; // 33
       let i=0;
       let j=0;
-
       let add = 0;
-
       //col
       for(i;i<col;i++){
-
         console.log("col iter: "+i);
-
         //row
         for(j=0;j<row;j++){
           console.log("row iter: "+j);
@@ -109,8 +119,6 @@ export class PlateauComponent implements OnInit {
         }
         j=0;
       }
-
-
     }
   */
 
