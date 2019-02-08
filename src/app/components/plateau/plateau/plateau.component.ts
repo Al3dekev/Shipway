@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlateauComponent implements OnInit {
 
 
-
+  //Always edit row and never have more than 5 column for the actual app graphic format
   private _plateauSize:number[] = [5,5];
   private _plateauDynamicallySize: Array<{id:number,status:number}> = [];
   private _cssGridColumnNumber:number;
