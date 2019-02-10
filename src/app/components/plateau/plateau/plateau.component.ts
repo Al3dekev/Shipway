@@ -35,10 +35,6 @@ export class PlateauComponent implements OnInit {
     let freeSpace = 0;
 
     for(i;i<col;i++){
-
-
-
-      //row
       for(j=0;j<row;j++){
         id++;
         console.log(id);
