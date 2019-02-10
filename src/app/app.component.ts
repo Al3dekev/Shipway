@@ -9,7 +9,7 @@ import{PlayGameService} from "./services/play-game.service";
 export class AppComponent {
   title = 'Shipway';
 
-  constructor(private pgs:PlayGameService){
+  constructor(public pgs:PlayGameService){
   }
 
 

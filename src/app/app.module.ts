@@ -9,11 +9,13 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from "@angular/material";
 import{MatRadioButton,MatRadioButtonBase,MatRadioChange,MatRadioGroup,MatRadioModule} from "@angular/material";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import {ScrollingModule,ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 import { LeftColumnComponent } from './components/left-column/left-column.component';
 import { GameConfigurationComponent } from './components/game-configuration/game-configuration.component';
-import { PlayerShipComponent } from './components/player-ship/player-ship.component';
-import { EnemyShipComponent } from './components/enemy-ship/enemy-ship.component';
+
+import { PlayerShipComponent } from './components/ships/player-ship/player-ship.component';
+import { EnemyShipComponent } from './components/ships/enemy-ship/enemy-ship.component';
 
 import {PlayGameService} from "./services/play-game.service";
 import {IpcService} from "./services/ipc.service";
@@ -47,7 +49,8 @@ import { ActionBoxComponent } from './components/plateau/action-box/action-box.c
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    ScrollingModule
   ],
   providers: [
     PlayGameService,
