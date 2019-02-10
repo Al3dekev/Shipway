@@ -1,6 +1,6 @@
 
   <!-- Title -->
-  <div class="menuTitleBox">
+  <div [ngStyle]="leftColumnStyleStateInConfig()" class="menuTitleBox">
     <div class="menuTitle">
       Welcome to Shipway
     </div>
@@ -10,9 +10,11 @@
   </div>
 
   <!-- buttons -->
-  <div class="menuBtnsBox">
+  <div [ngStyle]="leftColumnStyleStateInConfig()" class="menuBtnsBox">
 
-    <button mat-raised-button (click)="playGame()">Play Game</button>
+    <button *ngIf="!pgs.getStartTheGame()" mat-raised-button (click)="playGame()">Play Game</button>
+
+    <button *ngIf="pgs.getStartTheGame()" mat-raised-button>Pause Game</button>
 
     <button mat-raised-button (click)="leaveGame()">Quit Game</button>
 

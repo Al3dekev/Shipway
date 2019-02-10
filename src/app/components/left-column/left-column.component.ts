@@ -14,7 +14,7 @@ export class LeftColumnComponent implements OnInit {
   GameTitle:String;
   MenuButtons:String[];
 
-  constructor(private readonly _ipc: IpcService, private pgs:PlayGameService, private rend:Renderer2) {
+  constructor(private readonly _ipc: IpcService, public pgs:PlayGameService, private rend:Renderer2) {
 
   }
 
@@ -49,7 +49,14 @@ export class LeftColumnComponent implements OnInit {
     this._ipc.send('close-app');
   };
 
-
+  leftColumnStyleStateInConfig(){
+    if(this.pgs.getEnteringConfigMenu()){
+      return {
+        "filter":"blur(4px)",
+        "pointer-events": "none"
+      }
+    }
+  }
 
   getGameTitle(){
     return this.GameTitle;
