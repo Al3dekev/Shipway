@@ -53,7 +53,8 @@ export class LeftColumnComponent implements OnInit {
     if(this.pgs.getEnteringConfigMenu()){
       return {
         "filter":"blur(4px)",
-        "pointer-events": "none"
+        "pointer-events": "none",
+        "user-select": "none"
       }
     }
   }
