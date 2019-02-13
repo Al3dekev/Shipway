@@ -29,17 +29,17 @@ export class GameConfigurationComponent implements OnInit {
 
 
   BackButton(){
-    this.pgs.setEnteringConfigMenu(false);
+    this.pgs.EnteringConfigMenu = false;
   }
 
   startGameBtn(){
 
     //PROD MODE
-    this.pgs.setEnteringConfigMenu(false);
-    this.pgs.setStartTheGame(true);
+    this.pgs.EnteringConfigMenu = false;
+    this.pgs.startTheGame = true;
 
-    this.pgs.setShipColor(this.gameForm.value.shipColor);
-    this.pgs.setShipname(this.gameForm.value.shipName);
+    this.pgs.shipColor = this.gameForm.value.shipColor;
+    this.pgs.shipName = this.gameForm.value.shipName;
 
   }
 

@@ -22,7 +22,7 @@ export class LeftColumnComponent implements OnInit {
   playGame(){
 
 
-    this.pgs.setEnteringConfigMenu(true);
+    this.pgs.EnteringConfigMenu = true;
 
 /*// voir pour ajout dans une methode séparé
     /!*if(this.pgs.getEnteringConfigMenu()){*!/
@@ -50,7 +50,7 @@ export class LeftColumnComponent implements OnInit {
   };
 
   leftColumnStyleStateInConfig(){
-    if(this.pgs.getEnteringConfigMenu()){
+    if(this.pgs.EnteringConfigMenu){
       return {
         "filter":"blur(4px)",
         "pointer-events": "none",

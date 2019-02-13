@@ -4757,6 +4757,74 @@
 											"top": 539,
 											"width": 206,
 											"height": 13,
+											"text": "Dreadnought",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFo4fKqzeg0BHg=",
+											"_parent": {
+												"$ref": "AAAAAAFojuLqtXhQWAY="
+											},
+											"model": {
+												"$ref": "AAAAAAFo4fKqfugZVWw="
+											},
+											"font": "Arial;13;0",
+											"left": 741,
+											"top": 554,
+											"width": 206,
+											"height": 13,
+											"text": "Executor",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFo4fK3Dujjn+M=",
+											"_parent": {
+												"$ref": "AAAAAAFojuLqtXhQWAY="
+											},
+											"model": {
+												"$ref": "AAAAAAFo4fK22ejISz4="
+											},
+											"font": "Arial;13;0",
+											"left": 741,
+											"top": 569,
+											"width": 206,
+											"height": 13,
+											"text": "Imperator",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFo4fLAwemSzIM=",
+											"_parent": {
+												"$ref": "AAAAAAFojuLqtXhQWAY="
+											},
+											"model": {
+												"$ref": "AAAAAAFo4fLAh+l3gSY="
+											},
+											"font": "Arial;13;0",
+											"left": 741,
+											"top": 584,
+											"width": 206,
+											"height": 13,
+											"text": "FF-Bomber",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFo4fLk9upBqXM=",
+											"_parent": {
+												"$ref": "AAAAAAFojuLqtXhQWAY="
+											},
+											"model": {
+												"$ref": "AAAAAAFo4fLkw+omYvw="
+											},
+											"font": "Arial;13;0",
+											"left": 741,
+											"top": 599,
+											"width": 206,
+											"height": 13,
 											"text": "Literal1",
 											"horizontalAlignment": 0
 										}
@@ -4765,7 +4833,7 @@
 									"left": 736,
 									"top": 534,
 									"width": 216,
-									"height": 23
+									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
@@ -5880,6 +5948,38 @@
 						{
 							"_type": "UMLEnumerationLiteral",
 							"_id": "AAAAAAFojuMJLXlhbt0=",
+							"_parent": {
+								"$ref": "AAAAAAFojuLqs3hEqjE="
+							},
+							"name": "Dreadnought"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFo4fKqfugZVWw=",
+							"_parent": {
+								"$ref": "AAAAAAFojuLqs3hEqjE="
+							},
+							"name": "Executor"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFo4fK22ejISz4=",
+							"_parent": {
+								"$ref": "AAAAAAFojuLqs3hEqjE="
+							},
+							"name": "Imperator"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFo4fLAh+l3gSY=",
+							"_parent": {
+								"$ref": "AAAAAAFojuLqs3hEqjE="
+							},
+							"name": "FF-Bomber"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFo4fLkw+omYvw=",
 							"_parent": {
 								"$ref": "AAAAAAFojuLqs3hEqjE="
 							},

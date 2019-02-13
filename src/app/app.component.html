@@ -1,10 +1,10 @@
 
   <app-left-column class="leftColumn"></app-left-column>
 
-  <app-game-configuration class="gameConfigClass" *ngIf="pgs.getEnteringConfigMenu()"></app-game-configuration>
-  <app-game-started class="gameStartedClass" *ngIf="pgs.getStartTheGame()"></app-game-started>
+  <app-game-configuration class="gameConfigClass" *ngIf="pgs.EnteringConfigMenu"></app-game-configuration>
+  <app-game-started class="gameStartedClass" *ngIf="pgs.startTheGame"></app-game-started>
 
-  <div class="MainMenuImgClass" *ngIf="!pgs.getStartTheGame() && !pgs.getEnteringConfigMenu()">You welcome to put a img here</div>
+  <div class="MainMenuImgClass" *ngIf="!pgs.startTheGame && !pgs.EnteringConfigMenu">You welcome to put a img here</div>
 
 
 <router-outlet></router-outlet>
