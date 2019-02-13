@@ -4,8 +4,16 @@ export class Ship {
   private _name:string;
   private _color:string;
   private _propHealness:number = 100;
+  private _shipLocation:number;
 
 
+  get shipLocation(): number {
+    return this._shipLocation;
+  }
+
+  set shipLocation(value: number) {
+    this._shipLocation = value;
+  }
 
   get name(): string {
     return this._name;
