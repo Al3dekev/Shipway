@@ -55,7 +55,12 @@ export class PlateauComponent implements OnInit {
 
   }
 
-
+  testUpdate(){
+    this.pgs.plateauDynamicSize.id[6].push({
+      id: id,
+      status: freeSpace
+    });
+  }
 
   shipMoving(){
 

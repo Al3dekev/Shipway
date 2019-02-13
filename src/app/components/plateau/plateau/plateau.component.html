@@ -3,6 +3,7 @@
 <div class="grid" [ngStyle]="cssGridProperties()">
   <div *ngFor="let TP of pgs.plateauDynamicSize" class="element"><!--{{ TP.id }}-->
 
+
     <player-ship *ngIf="TP.status== 1"></player-ship> <!-- faire la meme pour les autres -->
 
   </div>
