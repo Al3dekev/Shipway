@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PlayGameService} from "../../../services/play-game.service";
 
 @Component({
   selector: 'app-plateau',
@@ -8,26 +9,31 @@ import { Component, OnInit } from '@angular/core';
 export class PlateauComponent implements OnInit {
 
 
-  //Always edit row and never have more than 5 column for the actual app graphic format
-  private _plateauSize:number[] = [5,5];
-  private _plateauDynamicallySize: Array<{id:number,status:number}> = [];
+   //Always edit row and never have more than 5 column for the actual app graphic format
+  private _plateauPlainNumberSize:number;
   private _cssGridColumnNumber:number;
 
+  private _divisionnedPartOfPlateau:number; // col+row/2
 
 
-  constructor() { }
+
+  constructor(public pgs:PlayGameService) {
+
+  }
 
   /**
    * 0: FreeSpace
    * 1: Ship
    */
   transformPlateau(){
-    let col = this.plateauSize[0];
-    let row = this.plateauSize[1];
+    let col = this.pgs.plateauTabSize[0];
+    let row = this.pgs.plateauTabSize[1];
 
-    this._cssGridColumnNumber = this.plateauSize[0];
+    this.plateauPlainNumberSize = col*row;
 
+    this.cssGridColumnNumber = col;
 
+    this.divisionnedPartOfPlateau = (col+row)/2;
 
     let i = 0;
     let j = 0;
@@ -38,7 +44,7 @@ export class PlateauComponent implements OnInit {
       for(j=0;j<row;j++){
         id++;
         console.log(id);
-        this.plateauDynamicallySize.push({
+        this.pgs.plateauDynamicSize.push({
           id: id,
           status: freeSpace
         });
@@ -63,29 +69,8 @@ export class PlateauComponent implements OnInit {
   }
 
 
-  get plateauSize(): number[] {
-    return this._plateauSize;
-  }
 
-  set plateauSize(value: number[]) {
-    this._plateauSize = value;
-  }
 
-  get cssGridColumnNumber(): number {
-    return this._cssGridColumnNumber;
-  }
-
-  set cssGridColumnNumber(value: number) {
-    this._cssGridColumnNumber = value;
-  }
-
-  get plateauDynamicallySize(): Array<{ id: number; status: number }> {
-    return this._plateauDynamicallySize;
-  }
-
-  set plateauDynamicallySize(value: Array<{ id: number; status: number }>) {
-    this._plateauDynamicallySize = value;
-  }
   /*
     /!***
      * in tab,
@@ -117,6 +102,34 @@ export class PlateauComponent implements OnInit {
       }
     }
   */
+
+
+
+
+  get plateauPlainNumberSize(): number {
+    return this._plateauPlainNumberSize;
+  }
+
+  set plateauPlainNumberSize(value: number) {
+    this._plateauPlainNumberSize = value;
+  }
+
+  get cssGridColumnNumber(): number {
+    return this._cssGridColumnNumber;
+  }
+
+  set cssGridColumnNumber(value: number) {
+    this._cssGridColumnNumber = value;
+  }
+
+  get divisionnedPartOfPlateau(): number {
+    return this._divisionnedPartOfPlateau;
+  }
+
+  set divisionnedPartOfPlateau(value: number) {
+    this._divisionnedPartOfPlateau = value;
+  }
+
 
   ngOnInit() {
     this.transformPlateau();
