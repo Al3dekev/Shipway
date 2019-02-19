@@ -38,9 +38,30 @@ export class GameConfigurationComponent implements OnInit {
     this.pgs.EnteringConfigMenu = false;
     this.pgs.startTheGame = true;
 
-    this.pgs.shipColor = this.gameForm.value.shipColor;
-    this.pgs.shipName = this.gameForm.value.shipName;
+    this.setPlayerShipProperties();
+    this.setEnemyShipProperties();
 
+  }
+
+  setPlayerShipProperties(){
+    this.pgs.playerShipColor = this.gameForm.value.shipColor;
+    this.pgs.playerShipName = this.gameForm.value.shipName;
+
+    if(this.pgs.playerShipColor == this.colorType1){
+      return true
+    }else{
+      return false
+    }
+  }
+
+  setEnemyShipProperties(){
+
+
+    if(this.setPlayerShipProperties() == true){
+      this.pgs.enemyShipColor = this.colorType2;
+    } else{
+      this.pgs.enemyShipColor = this.colorType1;
+    }
   }
 
   clickTestColor(){

@@ -2,29 +2,25 @@
 @smallArea:25%;
 @bigArea:74%;
 
+:host{
+  max-height: 560px;
+  height: 560px;
+  max-width: 1000px;
+  width: 1000px;
+  background-color: #e0e1e2;
+  font-family: Arial, Helvetica, sans-serif;
 
-  .leftColumn{
-      transition:0.5s;
-      flex-basis: @smallArea;
-      background-color: grey;
-      height: 100%;
-      text-align: center;
-      border-right: 2px solid black;
-      display:inline-block;
-  }
 
-  .gameConfigClass {
-    flex-basis: @bigArea;
-    background-color: whitesmoke;
-    height: 100%;
-    display: inline-block;
-    transition:3s;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  transition: 3s;
+}
 
-  .gameStartedClass{
-    height:100%;
-    width:@bigArea ;
-  }
+
+
 
   .MainMenuImgClass{
     height:100%;

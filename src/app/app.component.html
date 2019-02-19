@@ -1,8 +1,8 @@
 
-  <app-left-column class="leftColumn"></app-left-column>
+  <app-left-column></app-left-column>
 
-  <app-game-configuration class="gameConfigClass" *ngIf="pgs.EnteringConfigMenu"></app-game-configuration>
-  <app-game-started class="gameStartedClass" *ngIf="pgs.startTheGame"></app-game-started>
+  <app-game-configuration *ngIf="pgs.EnteringConfigMenu"></app-game-configuration>
+  <app-game-started *ngIf="pgs.startTheGame"></app-game-started>
 
   <div class="MainMenuImgClass" *ngIf="!pgs.startTheGame && !pgs.EnteringConfigMenu">You welcome to put a img here</div>
 

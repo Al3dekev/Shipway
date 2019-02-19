@@ -1,10 +1,20 @@
 @maxh:10px;
+@smallArea:25%;
+@bigArea:74%;
 
-
+:host{
+  transition:0.5s;
+  flex-basis: @smallArea;
+  background-color: grey;
+  height: 100%;
+  text-align: center;
+  border-right: 2px solid black;
+  display:inline-block;
+}
 
   .menuTitleBox{
     height: 35%;
-    background-color: red;
+    background-color: #ffaeae;
     border-bottom: 2px solid black;
     transition:0.5s;
     display: flex ;
@@ -26,7 +36,7 @@
 
   .menuBtnsBox{
     height: 65%;
-    background-color: purple;
+    background-color: #9778b9;
     transition:0.5s;
     display: flex ;
     flex-direction: column ;

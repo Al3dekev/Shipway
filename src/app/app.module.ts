@@ -24,6 +24,8 @@ import { PlateauComponent } from './components/plateau/plateau/plateau.component
 import { AlertBoxComponent } from './components/plateau/alert-box/alert-box.component';
 import { ActionBoxComponent } from './components/plateau/action-box/action-box.component';
 import { ModalPauseMenuComponent } from './components/modal-pause-menu/modal-pause-menu.component';
+import { MovementButtonComponent } from './components/plateau/movement-button/movement-button.component';
+import { AttackButtonComponent } from './components/plateau/attack-button/attack-button.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { ModalPauseMenuComponent } from './components/modal-pause-menu/modal-pau
     AlertBoxComponent,
     ActionBoxComponent,
     ModalPauseMenuComponent,
+    MovementButtonComponent,
+    AttackButtonComponent,
   ],
   imports: [
     BrowserModule,
