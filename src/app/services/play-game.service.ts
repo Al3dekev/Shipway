@@ -9,8 +9,16 @@ export class PlayGameService {
   private _EnteringConfigMenu:boolean = true; //Normally FALSE
   private _startTheGame:boolean = false;
 
-  private _shipName:string;
-  private _shipColor:string;
+  private _playerShipColor:string;
+  private _playerShipName:string;
+
+
+  private _playerShipHealth:number;
+
+
+  private _enemyShipColor:string;
+  private _enemyShipName:string;
+  private _enemyShipHealth:number;
 
   /**
    * Status 0: Free Space
@@ -39,11 +47,26 @@ export class PlayGameService {
     //let plateauLength = this._plateauDynamicSize.length;
 
     if(bool){
-      return dividedLength+1;
+      let upperSide = dividedLength+1;
+      console.log("spawnPlateauLocation TRUE: "+upperSide);
+      return upperSide;
     } else{
-      return ((col*row)-(dividedLength));
+      let lowerSide = ((col*row)-(dividedLength));
+      console.log("spawnPlateauLocation FALSE: "+lowerSide);
+      return lowerSide;
     }
   }
+
+  editLocation(id:number,newStatus:number){
+
+    this.plateauDynamicSize.forEach(obj => {
+      if(obj.id == id){
+        return obj.status = newStatus;
+      }
+      })
+
+  }
+
 
 
 
@@ -63,21 +86,55 @@ export class PlayGameService {
     this._startTheGame = value;
   }
 
-  get shipName(): string {
-    return this._shipName;
+  get playerShipColor(): string {
+    return this._playerShipColor;
   }
 
-  set shipName(value: string) {
-    this._shipName = value;
+  set playerShipColor(value: string) {
+    this._playerShipColor = value;
   }
 
-  get shipColor(): string {
-    return this._shipColor;
+  get playerShipName(): string {
+    return this._playerShipName;
   }
 
-  set shipColor(value: string) {
-    this._shipColor = value;
+  set playerShipName(value: string) {
+    this._playerShipName = value;
   }
+
+  get playerShipHealth(): number {
+    return this._playerShipHealth;
+  }
+
+  set playerShipHealth(value: number) {
+    this._playerShipHealth = value;
+  }
+
+  get enemyShipColor(): string {
+    return this._enemyShipColor;
+  }
+
+  set enemyShipColor(value: string) {
+    this._enemyShipColor = value;
+  }
+
+  get enemyShipName(): string {
+    return this._enemyShipName;
+  }
+
+  set enemyShipName(value: string) {
+    this._enemyShipName = value;
+  }
+
+  get enemyShipHealth(): number {
+    return this._enemyShipHealth;
+  }
+
+  set enemyShipHealth(value: number) {
+    this._enemyShipHealth = value;
+  }
+
+
 
   get plateauDynamicSize(): Array<{ id: number; status: number }> {
     return this._plateauDynamicSize;
