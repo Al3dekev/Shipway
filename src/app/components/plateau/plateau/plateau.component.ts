@@ -18,6 +18,28 @@ export class PlateauComponent implements OnInit {
 
 
   constructor(public pgs:PlayGameService) {
+    this.transformPlateau();
+
+    //This is a test, has to be deleted
+    this.pgs.plateauDynamicSize[5].status = 1;
+
+    this.turnSystem();
+
+    while (this.pgs.playerShipHealth == 0 || this.pgs.enemyShipHealth == 0){
+
+      if(this.pgs.playerShipHealth != 0){
+
+
+
+      } //end if player
+
+      if(this.pgs.enemyShipHealth !== 0){
+
+
+
+      } // end if enemy
+
+    } // turn while
 
   }
 
@@ -55,11 +77,11 @@ export class PlateauComponent implements OnInit {
 
   }
 
-  testUpdate(){
-    this.pgs.plateauDynamicSize.id[6].push({
-      id: id,
-      status: freeSpace
-    });
+  turnSystem(){
+    // A mettre dans le constructor
+
+
+
   }
 
   shipMoving(){
@@ -137,7 +159,7 @@ export class PlateauComponent implements OnInit {
 
 
   ngOnInit() {
-    this.transformPlateau();
+
   }
 
 }
