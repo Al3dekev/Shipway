@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertSenderService} from "../../../services/alert-sender.service";
+import {PlayGameService} from "../../../services/play-game.service";
 
 @Component({
   selector: 'app-alert-box',
@@ -28,15 +29,27 @@ export class AlertBoxComponent implements OnInit {
 // voir ou ça nous mene
 
 
-  constructor(private ats:AlertSenderService) {
+  constructor(private ats:AlertSenderService, private pgs:PlayGameService) {
     this.initiateAlertDataListConversion();
   }
 
-  addAlertInView(){
-
-
-
-    return ""
+  addAlertInView(alertName:string){
+    let ship;
+    if(this.ats.actualTurnOwner){
+      ship = this.pgs.playerShipName;
+    }else{
+      ship = this.pgs.enemyShipName;
+    }
+    console.log("this.alertMainObject.length: "+this.alertMainObject.length);
+    for(let x=0;x < this.alertMainObject.length;x++){
+      if(alertName == this.alertTypeList[x][0]){
+        this.alertMainObject.push({
+          id: x,
+          type:this.alertTypeList[x][0],
+          content:ship+this.alertTypeList[x][1]
+        })
+      }
+    }
   }
 
 

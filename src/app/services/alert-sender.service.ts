@@ -8,6 +8,8 @@ export class AlertSenderService {
 
 private _alertTypeEvent:string[];
 
+  private _actualTurnOwner:boolean;
+
 
 
   constructor() {
@@ -28,5 +30,12 @@ private _alertTypeEvent:string[];
     this._alertTypeEvent = value;
   }
 
+  get actualTurnOwner(): boolean {
+    return this._actualTurnOwner;
+  }
+
+  set actualTurnOwner(value: boolean) {
+    this._actualTurnOwner = value;
+  }
 
 }
