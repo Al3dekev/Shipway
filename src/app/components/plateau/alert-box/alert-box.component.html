@@ -1,34 +1,9 @@
 <!-- alert-box works! -->
 <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
 
-  <div [ngStyle]="">test</div> <!-- message -->
-  <div [ngStyle]="">test</div>
+  <div *ngFor="let obj of this.alertMainObject" [ngStyle]="">
+    <span style="">{{obj.id}}: </span><span>{{obj.content}}</span>
+  </div> <!-- message -->
 
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
-  <div [ngStyle]="">test</div>
 
 </cdk-virtual-scroll-viewport>
