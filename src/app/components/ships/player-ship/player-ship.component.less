@@ -1,10 +1,21 @@
 @size:25px;
 
 :host{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+:host span{
   width: @size;
   height: @size;
   display: inline-block;
   border-radius: 50%;
-  background-color: dodgerblue;
   white-space: nowrap;
 }

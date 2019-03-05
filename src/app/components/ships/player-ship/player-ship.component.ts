@@ -3,6 +3,7 @@ import {Ship} from "../ship";
 import {PlateauComponent} from "../../plateau/plateau/plateau.component";
 import {PlayGameService} from "../../../services/play-game.service";
 import {createHostBinding} from "@angular/compiler/src/core";
+import {AlertSenderService} from "../../../services/alert-sender.service";
 
 
 //@HostBinding(this.cssShipColor())
@@ -14,13 +15,14 @@ import {createHostBinding} from "@angular/compiler/src/core";
 })
 export class PlayerShipComponent extends Ship implements OnInit{
 
-  constructor(public pgs:PlayGameService,private plateau:PlateauComponent) {
+  constructor(public pgs:PlayGameService,private plateau:PlateauComponent,private alSender:AlertSenderService) {
     super();
+    this.alSender.addAlertInView("spawn");
     console.log("initialisation de PLAYER SHIP");
     this.action;
     this.name = this.pgs.playerShipName;
-    this.color = this.pgs.playerShipName;
-
+    this.color = this.pgs.playerShipColor;
+    console.log(this.color)
   }
 
   spawnShip(){
@@ -29,8 +31,8 @@ export class PlayerShipComponent extends Ship implements OnInit{
 
   cssShipColor(){
     return {
-      "background-color":this.color
-    }
+      "background-color":""+this.color+""
+    };
   }
 
   shipLocationOnPlateau(){
