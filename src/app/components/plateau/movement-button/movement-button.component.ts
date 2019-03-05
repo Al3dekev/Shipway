@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-movement-button',
+  selector: 'movement-btn',
   templateUrl: './movement-button.component.html',
   styleUrls: ['./movement-button.component.less']
 })

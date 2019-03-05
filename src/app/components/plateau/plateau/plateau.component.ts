@@ -29,13 +29,13 @@ export class PlateauComponent implements OnInit {
     while (this.pgs.playerShipHealth == 0 || this.pgs.enemyShipHealth == 0){
 
       if(this.pgs.playerShipHealth != 0){
-        this.as.actualTurnOwner = true;
+        //this.as.actualTurnOwner = true;
 
 
       } //end if player
 
       if(this.pgs.enemyShipHealth !== 0){
-        this.as.actualTurnOwner = false;
+        //this.as.actualTurnOwner = false;
 
 
       } // end if enemy
@@ -46,7 +46,10 @@ export class PlateauComponent implements OnInit {
 
   /**
    * 0: FreeSpace
-   * 1: Ship
+   * 1: PlayerShip
+   * 2: EnemyShip
+   * 3: Movement Action btn
+   * 4: Attack Action btn
    */
   transformPlateau(){
     let col = this.pgs.plateauTabSize[0];

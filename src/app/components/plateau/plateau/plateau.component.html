@@ -1,11 +1,20 @@
-
+<!--
+   * 0: FreeSpace
+   * 1: PlayerShip
+   * 2: EnemyShip
+   * 3: Movement Action btn
+   * 4: Attack Action btn
+-->
 <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
 <div class="grid" [ngStyle]="cssGridProperties()">
   <div *ngFor="let TP of pgs.plateauDynamicSize" class="element"><!--{{ TP.id }}-->
 
 
     <player-ship *ngIf="TP.status== 1"></player-ship> <!-- faire la meme pour les autres -->
+    <enemy-ship *ngIf="TP.status== 2"></enemy-ship>
 
+    <movement-btn *ngIf="TP.status== 3"></movement-btn>
+    <attack-btn *ngIf="TP.status== 4"></attack-btn>
   </div>
 </div>
 
