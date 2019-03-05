@@ -16,7 +16,9 @@ export class GameConfigurationComponent implements OnInit {
   private _colorType1:string="#6fdbd5";
   private _colorType2:string="#dd71bf";
 
-  gameForm = new FormGroup({
+
+
+  private _gameForm = new FormGroup({
     shipName: new FormControl("Normandy"),
     shipColor: new FormControl(this.colorType1),
     //Remplacer vars de la classe par celles du formcontrol
@@ -43,6 +45,9 @@ export class GameConfigurationComponent implements OnInit {
 
   }
 
+  /**
+   * Player properties
+   */
   setPlayerShipProperties(){
     this.pgs.playerShipColor = this.gameForm.value.shipColor;
     this.pgs.playerShipName = this.gameForm.value.shipName;
@@ -54,8 +59,10 @@ export class GameConfigurationComponent implements OnInit {
     }
   }
 
+  /**
+   * AI properties
+   */
   setEnemyShipProperties(){
-
 
     if(this.setPlayerShipProperties() == true){
       this.pgs.enemyShipColor = this.colorType2;
@@ -64,10 +71,13 @@ export class GameConfigurationComponent implements OnInit {
     }
   }
 
+  /**
+   * useless method
+   */
   clickTestColor(){
-    console.log(this.gameForm.value);
-    console.log(this.gameForm.value.shipName);
-    console.log(this.gameForm.value.shipColor);
+    console.log(this._gameForm.value);
+    console.log(this._gameForm.value.shipName);
+    console.log(this._gameForm.value.shipColor);
   }
 
 
@@ -88,13 +98,20 @@ export class GameConfigurationComponent implements OnInit {
 
   //about form
   get shipName(){
-    return this.gameForm.value.shipName;
+    return this._gameForm.value.shipName;
   }
 
   get shipColor(){
-    return this.gameForm.value.shipColor;
+    return this._gameForm.value.shipColor;
   }
 
+  get gameForm(): FormGroup {
+    return this._gameForm;
+  }
+
+  set gameForm(value: FormGroup) {
+    this._gameForm = value;
+  }
 
   ngOnInit() {
   }

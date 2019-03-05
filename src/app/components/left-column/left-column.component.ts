@@ -11,8 +11,10 @@ import {PlayGameService} from "../../services/play-game.service";
 })
 export class LeftColumnComponent implements OnInit {
 
-  GameTitle:String;
-  MenuButtons:String[];
+  private _GameTitle:string;
+  private _MenuButtons:string[];
+
+
 
   constructor(private readonly _ipc: IpcService, public pgs:PlayGameService, private rend:Renderer2) {
 
@@ -59,18 +61,20 @@ export class LeftColumnComponent implements OnInit {
     }
   }
 
-  getGameTitle(){
-    return this.GameTitle;
-  }
-  setGameTitle(set){
-    this.GameTitle = set;
+  get GameTitle(): string {
+    return this._GameTitle;
   }
 
-  getMenuButtons(){
-    return this.MenuButtons;
+  set GameTitle(value: string) {
+    this._GameTitle = value;
   }
-  setMenuButtons(set){
-    this.MenuButtons = set;
+
+  get MenuButtons(): string[] {
+    return this._MenuButtons;
+  }
+
+  set MenuButtons(value: string[]) {
+    this._MenuButtons = value;
   }
 
 

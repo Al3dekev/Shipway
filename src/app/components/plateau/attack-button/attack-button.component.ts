@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-attack-button',
+  selector: 'attack-btn',
   templateUrl: './attack-button.component.html',
   styleUrls: ['./attack-button.component.less']
 })
