@@ -7,11 +7,19 @@ import{PlayGameService} from "./services/play-game.service";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'Shipway';
+  private _title = 'Shipway';
+
+
 
   constructor(public pgs:PlayGameService){
   }
 
+  get title(): string {
+    return this._title;
+  }
 
+  set title(value: string) {
+    this._title = value;
+  }
 
 }
