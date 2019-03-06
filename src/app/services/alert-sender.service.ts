@@ -23,6 +23,10 @@ export class AlertSenderService {
 
   }
 
+  /**
+   * Ajouter un parametre tour dans alertViewMainObjectList pour la gestion de l'affichage des tours
+   * @param alertName
+   */
   addAlertInView(alertName:string){
 
     console.log("initiateAlertDataListConversion WORKS");
@@ -43,13 +47,13 @@ export class AlertSenderService {
     }
 
     this.alertTypeList = [
-      ["spawn",pref+Attship+" has spawned on the map"],
+      ["spawn",Attship+" has spawned on the map"],//1: type | 2:
       ["start","The game is initialized"],
       ["end","The game is ended"],
       ["movement",Attship+" moved"],
       ["attack",Attship+" attacked"],
-      ["gotHit",DefShip+" been hit"],
-      ["missHit", "...and it missed"],
+      ["gotHit",DefShip+" has been hit... successfully"],
+      ["missHit", DefShip+" has been hit... and it missed"],
       ["turn","TURN OF "+Attship],
       ["defeat",Attship+" lost."],
       ["victory",Attship+" won."]
