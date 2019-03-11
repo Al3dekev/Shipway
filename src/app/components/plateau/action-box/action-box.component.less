@@ -1,17 +1,27 @@
-
-.ActionBoxParent{
-  display:inline-block;
-  width:50%;
-
+:host{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  align-content: center;
 }
 
-.ActionBoxParent:nth-child(1){
-  width: 49px;
+:host .ShipInformation{
+  display: inline-block;
+  height: 100%;
+  width: 49%;
   border-right: 1px solid black;
 
+/*  div{
+    display: inline-block;
+  }*/
 }
 
-
-.ActionBoxChild{
-
+:host .ActionPanel{
+  display: inline-block;
+  height: 100%;
+  width: 50%;
 }

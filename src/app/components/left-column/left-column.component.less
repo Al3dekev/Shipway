@@ -4,16 +4,26 @@
 
 :host{
   transition:0.5s;
-  flex-basis: @smallArea;
+  flex: 0.9;
   background-color: grey;
   height: 100%;
   text-align: center;
   border-right: 2px solid black;
-  display:inline-block;
+  //display:inline-block;
+
+  display: flex ;
+  flex-direction: column ;
+  flex-wrap: wrap ;
+  justify-content: center ;
+  align-items: center ;
+  align-content: center ;
 }
 
   .menuTitleBox{
-    height: 35%;
+
+
+    flex: 35;
+    width: 100%;
     background-color: #ffaeae;
     border-bottom: 2px solid black;
     transition:0.5s;
@@ -35,7 +45,8 @@
   } // Fin menuTitleBox
 
   .menuBtnsBox{
-    height: 65%;
+    flex: 65;
+    width: 100%;
     background-color: #9778b9;
     transition:0.5s;
     display: flex ;
