@@ -61,7 +61,7 @@ export class PlayGameService {
 
     this.plateauDynamicSize.forEach(obj => {
       if(obj.id == id){
-        return obj.status = newStatus;
+        return obj.status = newStatus; // return isn't necessary right?
       }
       })
 
@@ -133,8 +133,6 @@ export class PlayGameService {
   set enemyShipHealth(value: number) {
     this._enemyShipHealth = value;
   }
-
-
 
   get plateauDynamicSize(): Array<{ id: number; status: number }> {
     return this._plateauDynamicSize;

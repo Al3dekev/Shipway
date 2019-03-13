@@ -36,6 +36,8 @@ export class AlertSenderService {
 
     let Attship,DefShip;
     let pref = "The ";
+    //let spanPref = "<span style='font-style: italic;'>";
+    //let spanSuff = "</span>";
     if(this._actualTurnOwner == 1){
       Attship = pref+this.pgs.playerShipName;
       DefShip = pref+this.pgs.enemyShipName;
@@ -45,6 +47,9 @@ export class AlertSenderService {
     }else if(this._actualTurnOwner == 3){
 
     }
+
+    //Attship = spanPref+Attship+spanSuff;
+    //DefShip = spanPref+DefShip+spanSuff;
 
     this.alertTypeList = [
       ["spawn",Attship+" has spawned on the map"],//1: type | 2:
