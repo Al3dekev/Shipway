@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AlertSenderService} from "../../../services/alert-sender.service";
 
 @Component({
   selector: 'enemy-ship',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnemyShipComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alSender:AlertSenderService) {
+    this.alSender.addAlertInView("spawn");
+  }
 
   ngOnInit() {
   }
