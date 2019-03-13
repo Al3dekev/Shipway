@@ -17,7 +17,11 @@ export class PlateauComponent implements OnInit {
   private _divisionnedPartOfPlateau:number; // col+row/2
 
 
-
+  /**
+   *
+   * @param pgs
+   * @param as
+   */
   constructor(public pgs:PlayGameService, private as:AlertSenderService) {
     this.transformPlateau();
 
@@ -26,21 +30,7 @@ export class PlateauComponent implements OnInit {
 
     this.turnSystem();
 
-    while (this.pgs.playerShipHealth == 0 || this.pgs.enemyShipHealth == 0){
 
-      if(this.pgs.playerShipHealth != 0){
-        //this.as.actualTurnOwner = true;
-
-
-      } //end if player
-
-      if(this.pgs.enemyShipHealth !== 0){
-        //this.as.actualTurnOwner = false;
-
-
-      } // end if enemy
-
-    } // turn while
 
   }
 
@@ -68,6 +58,7 @@ export class PlateauComponent implements OnInit {
 
     for(i;i<col;i++){
       for(j=0;j<row;j++){
+        console.log("ID grid plateau:"+id);
         id++;
         console.log(id);
         this.pgs.plateauDynamicSize.push({
@@ -81,23 +72,48 @@ export class PlateauComponent implements OnInit {
 
   }
 
+  /**
+   * A mettre dans le constructor
+   */
   turnSystem(){
-    // A mettre dans le constructor
 
+    while (this.pgs.playerShipHealth == 0 || this.pgs.enemyShipHealth == 0){
+
+      if(this.pgs.playerShipHealth != 0){
+        this.as.actualTurnOwner = 1;
+        this.as.addAlertInView("turn");
+        // actionBox: true sur var pour activer le pad de selection d'action | blocage de tour tant qu'il n'y a pas d'action selectionné
+        //
+        //flouter et desactiver (false) l'actionBox
+      } //end if player
+
+      if(this.pgs.enemyShipHealth !== 0){
+        this.as.actualTurnOwner = 2;
+        this.as.addAlertInView("turn");
+
+      } // end if enemy
+
+    } // turn while
 
 
   }
 
-  shipMoving(){
-
-  }
-
+  /**
+   *
+   */
   cssGridProperties(){
     let gridProperties = {
       "grid-template-columns":"repeat("+this.cssGridColumnNumber+",auto)"
     };
     return gridProperties;
   }
+
+
+
+  shipMoving(){
+
+  }
+
 
 
 
