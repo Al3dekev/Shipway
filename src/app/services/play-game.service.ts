@@ -27,7 +27,11 @@ export class PlayGameService {
    * 3: Ask for Attack
    * 4: Ask for Movement
    */
-  private _plateauDynamicSize: Array<{id:number,status:number}> = [];
+  private _plateauDynamicSize: Array<{
+        id:number,
+        coo:number[],
+        status: number
+  }> = [];
   private _plateauTabSize:number[] = [5,5];
 
   constructor() {
@@ -134,11 +138,12 @@ export class PlayGameService {
     this._enemyShipHealth = value;
   }
 
-  get plateauDynamicSize(): Array<{ id: number; status: number }> {
+
+  get plateauDynamicSize(): Array<{ id: number; coo: number[]; status: number }> {
     return this._plateauDynamicSize;
   }
 
-  set plateauDynamicSize(value: Array<{ id: number; status: number }>) {
+  set plateauDynamicSize(value: Array<{ id: number; coo: number[]; status: number }>) {
     this._plateauDynamicSize = value;
   }
 

@@ -51,23 +51,40 @@ export class PlateauComponent implements OnInit {
 
     this.divisionnedPartOfPlateau = (col+row)/2;
 
-    let i = 0;
-    let j = 0;
+    let i = 1;
+    let j;
     let id = 0;
     let freeSpace = 0;
 
-    for(i;i<col;i++){
+    for(i;i<=row;i++){
+      j = 1;
+      console.log("GRID, row: "+i);
+      for(j;j<=col;j++){
+        console.log("GRID, col: "+j);
+        this.pgs.plateauDynamicSize.push({
+          id: id,
+          coo:[j,i],
+          status: freeSpace,
+        });
+        //console.log(this.pgs.plateauDynamicSize[j].coo);
+      }
+
+    }
+
+
+/*    for(i;i<col;i++){
       for(j=0;j<row;j++){
         console.log("ID grid plateau:"+id);
         id++;
         console.log(id);
         this.pgs.plateauDynamicSize.push({
           id: id,
+          coo:[],
           status: freeSpace
         });
       }
       j=0;
-    }
+    }*/
 
 
   }
