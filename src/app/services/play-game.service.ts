@@ -11,8 +11,6 @@ export class PlayGameService {
 
   private _playerShipColor:string;
   private _playerShipName:string;
-
-
   private _playerShipHealth:number;
 
 

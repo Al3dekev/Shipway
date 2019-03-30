@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlayGameService} from "../../../services/play-game.service";
 import {AlertSenderService} from "../../../services/alert-sender.service";
+import {PlateauService} from "../../../services/plateau.service";
 
 @Component({
   selector: 'app-plateau',
@@ -19,14 +20,14 @@ export class PlateauComponent implements OnInit {
 
   /**
    *
-   * @param pgs
+   * @param ps
    * @param as
    */
-  constructor(public pgs:PlayGameService, private as:AlertSenderService) {
+  constructor(public ps:PlateauService, private as:AlertSenderService) {
     this.transformPlateau();
 
     //This is a test, has to be deleted
-    this.pgs.plateauDynamicSize[5].status = 1;
+    this.ps.plateauDynamicSize[5].status = 1;
 
     this.turnSystem();
 
@@ -42,8 +43,8 @@ export class PlateauComponent implements OnInit {
    * 4: Attack Action btn
    */
   transformPlateau(){
-    let col = this.pgs.plateauTabSize[0];
-    let row = this.pgs.plateauTabSize[1];
+    let col = this.ps.plateauTabSize[0];
+    let row = this.ps.plateauTabSize[1];
 
     this.plateauPlainNumberSize = col*row;
 
@@ -61,12 +62,12 @@ export class PlateauComponent implements OnInit {
       console.log("GRID, row: "+i);
       for(j;j<=col;j++){
         console.log("GRID, col: "+j);
-        this.pgs.plateauDynamicSize.push({
+        this.ps.plateauDynamicSize.push({
           id: id,
           coo:[j,i],
           status: freeSpace,
         });
-        //console.log(this.pgs.plateauDynamicSize[j].coo);
+        //console.log(this.ps.plateauDynamicSize[j].coo);
       }
 
     }
@@ -77,7 +78,7 @@ export class PlateauComponent implements OnInit {
         console.log("ID grid plateau:"+id);
         id++;
         console.log(id);
-        this.pgs.plateauDynamicSize.push({
+        this.ps.plateauDynamicSize.push({
           id: id,
           coo:[],
           status: freeSpace
@@ -94,9 +95,9 @@ export class PlateauComponent implements OnInit {
    */
   turnSystem(){
 
-    while (this.pgs.playerShipHealth == 0 || this.pgs.enemyShipHealth == 0){
+    while (this.ps.playerShipHealth == 0 || this.ps.enemyShipHealth == 0){
 
-      if(this.pgs.playerShipHealth != 0){
+      if(this.ps.playerShipHealth != 0){
         this.as.actualTurnOwner = 1;
         this.as.addAlertInView("turn");
         // actionBox: true sur var pour activer le pad de selection d'action | blocage de tour tant qu'il n'y a pas d'action selectionné
@@ -104,7 +105,7 @@ export class PlateauComponent implements OnInit {
         //flouter et desactiver (false) l'actionBox
       } //end if player
 
-      if(this.pgs.enemyShipHealth !== 0){
+      if(this.ps.enemyShipHealth !== 0){
         this.as.actualTurnOwner = 2;
         this.as.addAlertInView("turn");
 

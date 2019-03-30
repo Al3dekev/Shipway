@@ -1,6 +1,7 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import {IpcService} from "../../services/ipc.service";
 import {PlayGameService} from "../../services/play-game.service";
+import {StartGameService} from "../../services/start-game.service";
 //import {appendChild} from "@angular/core/src/render3/node_manipulation";
 
 
@@ -16,7 +17,7 @@ export class LeftColumnComponent implements OnInit {
 
 
 
-  constructor(private readonly _ipc: IpcService, public pgs:PlayGameService, private rend:Renderer2) {
+  constructor(private readonly _ipc: IpcService, public sgs:StartGameService, private rend:Renderer2) {
 
   }
 
@@ -24,7 +25,7 @@ export class LeftColumnComponent implements OnInit {
   playGame(){
 
 
-    this.pgs.EnteringConfigMenu = true;
+    this.sgs.EnteringConfigMenu = true;
 
 /*// voir pour ajout dans une methode séparé
     /!*if(this.pgs.getEnteringConfigMenu()){*!/
@@ -52,7 +53,7 @@ export class LeftColumnComponent implements OnInit {
   };
 
   leftColumnStyleStateInConfig(){
-    if(this.pgs.EnteringConfigMenu){
+    if(this.sgs.EnteringConfigMenu){
       return {
         "filter":"blur(4px)",
         "pointer-events": "none",

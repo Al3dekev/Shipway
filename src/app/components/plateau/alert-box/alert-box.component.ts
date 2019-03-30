@@ -16,7 +16,7 @@ export class AlertBoxComponent implements OnInit {
 
 
 
-  constructor(public ats:AlertSenderService, private pgs:PlayGameService) {
+  constructor(public ats:AlertSenderService) {
   }
 
 

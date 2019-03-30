@@ -1,3 +1,5 @@
+import {ShipService} from "../../services/ship.service";
+
 export class Ship {
 
 
@@ -5,6 +7,9 @@ export class Ship {
   private _color:string;
   private _propHealness:number = 100;
   private _shipLocation:number;
+
+
+  constructor(){}
 
 
   get shipLocation(): number {

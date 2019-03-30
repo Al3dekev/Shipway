@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import{ PlayGameService} from "../../services/play-game.service";
 import {FormGroup,FormControl} from "@angular/forms";
+import {StartGameService} from "../../services/start-game.service";
+import {ShipService} from "../../services/ship.service";
 
 @Component({
   selector: 'app-game-configuration',
@@ -25,20 +27,20 @@ export class GameConfigurationComponent implements OnInit {
   });
 
 
-  constructor(private pgs:PlayGameService) {
+  constructor(private sgs:StartGameService, private ss:ShipService) {
 
   }
 
 
   BackButton(){
-    this.pgs.EnteringConfigMenu = false;
+    this.sgs.EnteringConfigMenu = false;
   }
 
   startGameBtn(){
 
     //PROD MODE
-    this.pgs.EnteringConfigMenu = false;
-    this.pgs.startTheGame = true;
+    this.sgs.EnteringConfigMenu = false;
+    this.sgs.startTheGame = true;
 
     this.setPlayerShipProperties();
     this.setEnemyShipProperties();
@@ -49,10 +51,10 @@ export class GameConfigurationComponent implements OnInit {
    * Player properties
    */
   setPlayerShipProperties(){
-    this.pgs.playerShipColor = this.gameForm.value.shipColor;
-    this.pgs.playerShipName = this.gameForm.value.shipName;
+    this.ss.playerShipColor = this.gameForm.value.shipColor;
+    this.ss.playerShipName = this.gameForm.value.shipName;
 
-    if(this.pgs.playerShipColor == this.colorType1){
+    if(this.ss.playerShipColor == this.colorType1){
       return true
     }else{
       return false
@@ -65,9 +67,9 @@ export class GameConfigurationComponent implements OnInit {
   setEnemyShipProperties(){
 
     if(this.setPlayerShipProperties() == true){
-      this.pgs.enemyShipColor = this.colorType2;
+      this.ss.enemyShipColor = this.colorType2;
     } else{
-      this.pgs.enemyShipColor = this.colorType1;
+      this.ss.enemyShipColor = this.colorType1;
     }
   }
 
