@@ -12,7 +12,7 @@ function createWindow() {
     width: 1000,
     height: 560,
     fullscreen:false,
-    resizable:false
+    resizable:true
   });
   win.loadURL(url.format({
     pathname: path.join(__dirname, '../dist/Shipway/index.html'),
