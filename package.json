@@ -5,16 +5,16 @@
   "author": "mroot",
   "description": "Angular and Electron",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "forge-start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "build-watch": "ng build --op dist -w"
+    "ng": "npx ng",
+    "start": "npx ng serve",
+    "build": "npx ng build",
+    "test": "npx ng test",
+    "lint": "npx ng lint",
+    "e2e": "npx ng e2e",
+    "forge-start": "npx electron-forge start",
+    "package": "npx electron-forge package",
+    "make": "npx electron-forge make",
+    "build-watch": "npx ng build --op dist -w"
   },
   "private": true,
   "config": {
