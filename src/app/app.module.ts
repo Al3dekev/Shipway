@@ -26,8 +26,6 @@ import { ActionBoxComponent } from './components/Entities/action-box/action-box.
 import { ModalPauseMenuComponent } from './components/Main/modal-pause-menu/modal-pause-menu.component';
 import { MovementButtonComponent } from './components/Entities/movement-button/movement-button.component';
 import { AttackButtonComponent } from './components/Entities/attack-button/attack-button.component';
-import { ArrayEntityComponent } from './components/Entities/array-entity/array-entity.component';
-
 
 @NgModule({
   declarations: [
@@ -43,7 +41,6 @@ import { ArrayEntityComponent } from './components/Entities/array-entity/array-e
     ModalPauseMenuComponent,
     MovementButtonComponent,
     AttackButtonComponent,
-    ArrayEntityComponent,
   ],
   imports: [
     BrowserModule,
