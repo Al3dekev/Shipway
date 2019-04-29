@@ -1,7 +1,7 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {IpcService} from "../../services/ipc.service";
-import {PlayGameService} from "../../services/play-game.service";
-import {StartGameService} from "../../services/start-game.service";
+import {IpcService} from "../../../services/ipc.service";
+import {PlayGameService} from "../../../services/play-game.service";
+import {StartGameService} from "../../../services/start-game.service";
 //import {appendChild} from "@angular/core/src/render3/node_manipulation";
 
 

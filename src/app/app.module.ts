@@ -11,21 +11,22 @@ import{MatRadioButton,MatRadioButtonBase,MatRadioChange,MatRadioGroup,MatRadioMo
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import {ScrollingModule,ScrollDispatchModule} from '@angular/cdk/scrolling';
 
-import { LeftColumnComponent } from './components/left-column/left-column.component';
-import { GameConfigurationComponent } from './components/game-configuration/game-configuration.component';
+import { LeftColumnComponent } from './components/Main/left-column/left-column.component';
+import { GameConfigurationComponent } from './components/Main/game-configuration/game-configuration.component';
 
-import { PlayerShipComponent } from './components/ships/player-ship/player-ship.component';
-import { EnemyShipComponent } from './components/ships/enemy-ship/enemy-ship.component';
+import { PlayerShipComponent } from './components/Entities/player-ship/player-ship.component';
+import { EnemyShipComponent } from './components/Entities/enemy-ship/enemy-ship.component';
 
 import {PlayGameService} from "./services/play-game.service";
 import {IpcService} from "./services/ipc.service";
 import { GameStartedComponent } from './components/plateau/game-started/game-started.component';
 import { PlateauComponent } from './components/plateau/plateau/plateau.component';
 import { AlertBoxComponent } from './components/plateau/alert-box/alert-box.component';
-import { ActionBoxComponent } from './components/plateau/action-box/action-box.component';
-import { ModalPauseMenuComponent } from './components/modal-pause-menu/modal-pause-menu.component';
-import { MovementButtonComponent } from './components/plateau/movement-button/movement-button.component';
-import { AttackButtonComponent } from './components/plateau/attack-button/attack-button.component';
+import { ActionBoxComponent } from './components/Entities/action-box/action-box.component';
+import { ModalPauseMenuComponent } from './components/Main/modal-pause-menu/modal-pause-menu.component';
+import { MovementButtonComponent } from './components/Entities/movement-button/movement-button.component';
+import { AttackButtonComponent } from './components/Entities/attack-button/attack-button.component';
+import { ArrayEntityComponent } from './components/Entities/array-entity/array-entity.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AttackButtonComponent } from './components/plateau/attack-button/attack
     ModalPauseMenuComponent,
     MovementButtonComponent,
     AttackButtonComponent,
+    ArrayEntityComponent,
   ],
   imports: [
     BrowserModule,

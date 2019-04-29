@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import{ PlayGameService} from "../../services/play-game.service";
+import{ PlayGameService} from "../../../services/play-game.service";
 import {FormGroup,FormControl} from "@angular/forms";
-import {StartGameService} from "../../services/start-game.service";
-import {ShipService} from "../../services/ship.service";
+import {StartGameService} from "../../../services/start-game.service";
+import {ShipService} from "../../../services/ship.service";
 
 @Component({
   selector: 'app-game-configuration',

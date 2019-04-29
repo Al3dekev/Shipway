@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {PlayerShipComponent} from "../components/ships/player-ship/player-ship.component";
+import {PlayerShipComponent} from "../components/Entities/player-ship/player-ship.component";
 
 @Injectable({
   providedIn: 'root'
