@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PlayGameService} from "../../../services/play-game.service";
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {PlateauService} from "../../../services/plateau.service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-plateau',
@@ -38,28 +39,80 @@ export class PlateauComponent implements OnInit {
    */
   transformPlateau(){
 
+  /*
+  private _plateauDynamicSize: Array<{
+    id:number,
+    coo:number[],
+    status: number,
+    has_wall:boolean,
+    wall:[{
+      up:boolean,
+      right:boolean,
+      bottom:boolean,
+      left:boolean,
+    }],
+  }> = [];
+   */
 
-
-    let i = 1;
-    let j;
+    let r = 1;
+    let c;
     let id = 0;
     let freeSpace = 0;
 
-    for(i;i<=row;i++){
-      j = 1;
-      console.log("GRID, row: "+i);
-      for(j;j<=col;j++){
-        console.log("GRID, col: "+j);
+
+    for(r;r<=this.ps.rowSize;r++){
+      c = 1;
+      console.log("GRID, row: "+r);
+      for(c;c<=this.ps.columnSize;c++){
+        console.log("GRID, col: "+c);
+
         this.ps.plateauDynamicSize.push({
           id: id,
-          coo:[j,i],
+          coo:{
+            col:c,
+            row:r,
+          },
           status: freeSpace,
+          has_wall:false,
+          wall:{
+            up:false,
+            right:false,
+            bottom:false,
+            left:false,
+          },
         });
-        //console.log(this.ps.plateauDynamicSize[j].coo);
-      }
 
-    }
+      } //for C
+    } // for R
 
+    r = 1;
+    c = 1;
+
+    for(r;r<=this.ps.rowSize;r++) {
+      this.ps.plateauDynamicSize.forEach(obj => {
+        if(obj.coo.row == 1){
+          obj.wall.left = true;
+          obj.has_wall = true;
+        }
+        if(obj.coo.row == this.ps.rowSize){
+          obj.wall.right = true;
+          obj.has_wall = true;
+        }
+      });
+
+      for(c;c<=this.ps.columnSize;c++){
+        this.ps.plateauDynamicSize.forEach(obj => {
+          if(obj.coo.col == 1){
+            obj.wall.up = true;
+            obj.has_wall = true;
+          }
+          if(obj.coo.col == this.ps.columnSize){
+            obj.wall.bottom = true;
+            obj.has_wall = true;
+          }
+        });
+      } // for C
+    } //for R
 
 /*    for(i;i<col;i++){
       for(j=0;j<row;j++){

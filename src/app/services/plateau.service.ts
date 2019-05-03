@@ -15,16 +15,19 @@ export class PlateauService extends StartGameService {
    * 4: Ask for Movement
    */
   private _plateauDynamicSize: Array<{
-    "id":number,
-    "coo":number[],
-    "status": number,
-    "has_wall":boolean,
-    "wall":[{
-      "up":boolean,
-      "right":boolean,
-      "bottom":boolean,
-      "left":boolean,
-    }],
+    id:number,
+    coo:{
+      col:number,
+      row:number
+    },
+    status: number,
+    has_wall:boolean,
+    wall:{
+      up:boolean,
+      right:boolean,
+      bottom:boolean,
+      left:boolean,
+    },
   }> = [];
   private _plateauTabSize:number[] = [5,5];
   private _columnSize:number;
@@ -43,11 +46,11 @@ export class PlateauService extends StartGameService {
   }
 
 
-  get plateauDynamicSize(): Array<{ id: number; coo: number[]; status: number; has_wall: boolean; wall: [{ up: boolean; right: boolean; bottom: boolean; left: boolean }] }> {
+  get plateauDynamicSize(): Array<{ id: number; coo: { col: number; row: number }; status: number; has_wall: boolean; wall: { up: boolean; right: boolean; bottom: boolean; left: boolean } }> {
     return this._plateauDynamicSize;
   }
 
-  set plateauDynamicSize(value: Array<{ id: number; coo: number[]; status: number; has_wall: boolean; wall: [{ up: boolean; right: boolean; bottom: boolean; left: boolean }] }>) {
+  set plateauDynamicSize(value: Array<{ id: number; coo: { col: number; row: number }; status: number; has_wall: boolean; wall: { up: boolean; right: boolean; bottom: boolean; left: boolean } }>) {
     this._plateauDynamicSize = value;
   }
 
