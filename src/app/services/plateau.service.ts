@@ -15,23 +15,39 @@ export class PlateauService extends StartGameService {
    * 4: Ask for Movement
    */
   private _plateauDynamicSize: Array<{
-    id:number,
-    coo:number[],
-    status: number
+    "id":number,
+    "coo":number[],
+    "status": number,
+    "has_wall":boolean,
+    "wall":[{
+      "up":boolean,
+      "right":boolean,
+      "bottom":boolean,
+      "left":boolean,
+    }],
   }> = [];
   private _plateauTabSize:number[] = [5,5];
+  private _columnSize:number;
+  private _rowSize:number;
+  private _plateauTileNumber:number;
 
 
   constructor() {
-    super()
+    super();
+
+    this.columnSize = this.plateauTabSize[0];
+    this.rowSize = this.plateauTabSize[1];
+    this.plateauTileNumber = this.columnSize*this.rowSize;
+
+
   }
 
 
-  get plateauDynamicSize(): Array<{ id: number; coo: number[]; status: number }> {
+  get plateauDynamicSize(): Array<{ id: number; coo: number[]; status: number; has_wall: boolean; wall: [{ up: boolean; right: boolean; bottom: boolean; left: boolean }] }> {
     return this._plateauDynamicSize;
   }
 
-  set plateauDynamicSize(value: Array<{ id: number; coo: number[]; status: number }>) {
+  set plateauDynamicSize(value: Array<{ id: number; coo: number[]; status: number; has_wall: boolean; wall: [{ up: boolean; right: boolean; bottom: boolean; left: boolean }] }>) {
     this._plateauDynamicSize = value;
   }
 
@@ -41,5 +57,29 @@ export class PlateauService extends StartGameService {
 
   set plateauTabSize(value: number[]) {
     this._plateauTabSize = value;
+  }
+
+  get columnSize(): number {
+    return this._columnSize;
+  }
+
+  set columnSize(value: number) {
+    this._columnSize = value;
+  }
+
+  get rowSize(): number {
+    return this._rowSize;
+  }
+
+  set rowSize(value: number) {
+    this._rowSize = value;
+  }
+
+  get plateauTileNumber(): number {
+    return this._plateauTileNumber;
+  }
+
+  set plateauTileNumber(value: number) {
+    this._plateauTileNumber = value;
   }
 }

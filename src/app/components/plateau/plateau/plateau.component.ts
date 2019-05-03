@@ -10,13 +10,7 @@ import {PlateauService} from "../../../services/plateau.service";
 })
 export class PlateauComponent implements OnInit {
 
-
-   //Always edit row and never have more than 5 column for the actual app graphic format
-  private _plateauPlainNumberSize:number;
-  private _cssGridColumnNumber:number;
-
-  private _divisionnedPartOfPlateau:number; // col+row/2
-
+  //No attributes
 
   /**
    *
@@ -43,14 +37,8 @@ export class PlateauComponent implements OnInit {
    * 4: Attack Action btn
    */
   transformPlateau(){
-    let col = this.ps.plateauTabSize[0];
-    let row = this.ps.plateauTabSize[1];
 
-    this.plateauPlainNumberSize = col*row;
 
-    this.cssGridColumnNumber = col;
-
-    this.divisionnedPartOfPlateau = (col+row)/2;
 
     let i = 1;
     let j;
@@ -121,7 +109,7 @@ export class PlateauComponent implements OnInit {
    */
   cssGridProperties(){
     let gridProperties = {
-      "grid-template-columns":"repeat("+this.cssGridColumnNumber+",auto)"
+      "grid-template-columns":"repeat("+this.ps.columnSize+",auto)"
     };
     return gridProperties;
   }
@@ -169,31 +157,6 @@ export class PlateauComponent implements OnInit {
   */
 
 
-
-
-  get plateauPlainNumberSize(): number {
-    return this._plateauPlainNumberSize;
-  }
-
-  set plateauPlainNumberSize(value: number) {
-    this._plateauPlainNumberSize = value;
-  }
-
-  get cssGridColumnNumber(): number {
-    return this._cssGridColumnNumber;
-  }
-
-  set cssGridColumnNumber(value: number) {
-    this._cssGridColumnNumber = value;
-  }
-
-  get divisionnedPartOfPlateau(): number {
-    return this._divisionnedPartOfPlateau;
-  }
-
-  set divisionnedPartOfPlateau(value: number) {
-    this._divisionnedPartOfPlateau = value;
-  }
 
 
   ngOnInit() {
