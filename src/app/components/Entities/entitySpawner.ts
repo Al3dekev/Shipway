@@ -1,11 +1,12 @@
 import {OnInit} from "@angular/core";
 import {PlateauService} from "../../services/plateau.service";
+import {TurnService} from "../../services/turn.service";
 
 
 export class EntitySpawner implements OnInit{
 
 
-  constructor(private ps:PlateauService){
+  constructor(private ps:PlateauService, private ts:TurnService){
 
   }
 
@@ -24,24 +25,37 @@ export class EntitySpawner implements OnInit{
   /**
    * true = spawning in Upper Plateau
    * false: Lower Plateau
-   * @param bool
+   *
+   *
+   * Plateau Status:
+   * 0: FreeSpace
+   * 1: PlayerShip
+   * 2: EnemyShip
+   * 3: Movement Action btn
+   * 4: Attack Action btn
+   *
+   * @param numEntityTurn
    */
-  spawnPlateauLocation(bool:boolean){
+  spawnPlateauLocation(numEntityTurn:number){
 
-    let col = this.plateauTabSize[0];
-    let dividedLength = (col-1)/2;
-    let row = this.plateauTabSize[1];
+    this.ps.plateauDynamicSize.forEach(obj =>{
+
+    });
     //let plateauLength = this._plateauDynamicSize.length;
 
-    if(bool){
-      let upperSide = dividedLength+1;
-      console.log("spawnPlateauLocation TRUE: "+upperSide);
-      return upperSide;
-    } else{
-      let lowerSide = ((col*row)-(dividedLength));
-      console.log("spawnPlateauLocation FALSE: "+lowerSide);
-      return lowerSide;
-    }
+    this.ps.plateauDynamicSize.forEach(obj =>{
+      if(numEntityTurn == this.ts.PlayerShipTurn && obj.coo.col == this.ps.middleRowNumber && obj.coo.row == 1){
+        console.log("spawnPlateauLocation TRUE: ");
+
+        obj.status = this.ts.PlayerShipTurn;
+      } else if(numEntityTurn == this.ts.EnemyShipTurn && obj.coo.col == this.ps.middleRowNumber && obj.coo.row == this.ps.rowSize){
+        console.log("spawnPlateauLocation TRUE: ");
+
+        obj.status = this.ts.EnemyShipTurn;
+      }
+    });
+
+
   }
 
 

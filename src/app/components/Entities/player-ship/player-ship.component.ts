@@ -1,11 +1,9 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Ship} from "../ship";
-import {PlateauComponent} from "../../plateau/plateau/plateau.component";
-import {PlayGameService} from "../../../services/play-game.service";
-import {createHostBinding} from "@angular/compiler/src/core";
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {ShipService} from "../../../services/ship.service";
 import {PlateauService} from "../../../services/plateau.service";
+import {TurnService} from "../../../services/turn.service";
 
 
 //@HostBinding(this.cssShipColor())
@@ -17,7 +15,7 @@ import {PlateauService} from "../../../services/plateau.service";
 })
 export class PlayerShipComponent extends Ship implements OnInit{
 
-  constructor(public ss:ShipService,private ps:PlateauService,private alSender:AlertSenderService) {
+  constructor(public ss:ShipService,private ps:PlateauService,private alSender:AlertSenderService,private ts:TurnService) {
     super();
   }
 
@@ -30,13 +28,13 @@ export class PlayerShipComponent extends Ship implements OnInit{
 
 
     action(){
-      console.log("Should be 25: "+this.plateau.plateauPlainNumberSize)
+      console.log("Should be 25: "+this.ps.rowSize*this.ps.columnSize)
     }
 
 
 
   ngOnInit() {
-    this.alSender.addAlertInView("spawn");
+    this.alSender.addAlertInView(this.ts.PlayerShipTurn,"spawn");
     console.log("initialisation de PLAYER SHIP");
     this.action;
     this.name = this.ss.playerShipName;

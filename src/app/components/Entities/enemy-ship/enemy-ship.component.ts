@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {Ship} from "../ship";
 import {ShipService} from "../../../services/ship.service";
+import {TurnService} from "../../../services/turn.service";
 
 @Component({
   selector: 'enemy-ship',
@@ -10,17 +11,18 @@ import {ShipService} from "../../../services/ship.service";
 })
 export class EnemyShipComponent extends Ship implements OnInit {
 
-  constructor(public ss:ShipService, private alSender:AlertSenderService) {
+  constructor(public ss:ShipService, private alSender:AlertSenderService,private ts:TurnService) {
     super();
-    this.alSender.addAlertInView("spawn");
+
+  }
+
+  ngOnInit() {
+    this.alSender.addAlertInView(this.ts.EnemyShipTurn,"spawn");
     console.log("initialisation de PLAYER SHIP");
     this.name = this.ss.enemyShipName;
     this.color = this.ss.enemyShipColor;
     this.ss.enemyShipHealth = this.propHealness;
     console.log(this.color)
-  }
-
-  ngOnInit() {
   }
 
 }
