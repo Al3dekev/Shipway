@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import{PlayGameService} from "./services/play-game.service";
+import {StartGameService} from "./services/start-game.service";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
 
 
 
-  constructor(public pgs:PlayGameService){
+  constructor(public sgs:StartGameService){
   }
 
   get title(): string {

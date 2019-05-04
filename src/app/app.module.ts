@@ -17,7 +17,6 @@ import { GameConfigurationComponent } from './components/Main/game-configuration
 import { PlayerShipComponent } from './components/Entities/player-ship/player-ship.component';
 import { EnemyShipComponent } from './components/Entities/enemy-ship/enemy-ship.component';
 
-import {PlayGameService} from "./services/play-game.service";
 import {IpcService} from "./services/ipc.service";
 import { GameStartedComponent } from './components/plateau/game-started/game-started.component';
 import { PlateauComponent } from './components/plateau/plateau/plateau.component';
