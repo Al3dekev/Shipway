@@ -1,33 +1,40 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {ShipService} from "./ship.service";
+import {TurnService} from "./turn.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlertSenderService {
+export class AlertSenderService{
 
-
-
-  private _actualTurnOwner:number;
 
   private _alertTypeList:any[];
 
-  private _alertMainObject:Array<{
+  private _PlayerShipAlertList:Array<{
     id:number,
+    id_turnOwner:number,
     type:string,
     content:string
   }> = [];
 
-  private _alertViewMainObjectList:Array<{
+  private _EnemyShipAlertList:Array<{
+    id:number,
     id_turnOwner:number,
     type:string,
     content:string
   }> = [];
 
 
-  constructor(private ss:ShipService) {
-    this.actualTurnOwner = 1;
+  private _alertMainListView:Array<{
+    id:number,
+    id_turnOwner:number,
+    type:string,
+    content:string
+  }> = [];
 
+
+  constructor(private ss:ShipService, private ts:TurnService) {
+    this.generateAlerts();
 
   }
 
@@ -35,137 +42,120 @@ export class AlertSenderService {
    * Ajouter un parametre tour dans alertViewMainObjectList pour la gestion de l'affichage des tours
    * @param alertName
    */
-  addAlertInView(alertName:string){
+  addAlertInView(id_owner:number,alertName:string){
 
-    console.log("initiateAlertDataListConversion WORKS");
-
-
-    console.log("AlertMessagesArrays WORKS");
-
-    let Attship,DefShip;
-    let pref = "The ";
-    //let spanPref = "<span style='font-style: italic;'>";
-    //let spanSuff = "</span>";
-    if(this._actualTurnOwner == 1){
-      Attship = pref+this.ss.playerShipName;
-      DefShip = pref+this.ss.enemyShipName;
-    }else if(this._actualTurnOwner == 2){
-      DefShip = pref+this.ss.playerShipName;
-      Attship = pref+this.ss.enemyShipName;
-    }else if(this._actualTurnOwner == 3){
-
-    }
-
-    //Attship = spanPref+Attship+spanSuff;
-    //DefShip = spanPref+DefShip+spanSuff;
-
-    this.alertTypeList = [
-      ["spawn",Attship+" has spawned on the map"],//1: type | 2:
-      ["start","The game is initialized"],
-      ["end","The game is ended"],
-      ["movement",Attship+" moved"],
-      ["attack",Attship+" attacked"],
-      ["gotHit",DefShip+" has been hit... successfully"],
-      ["missHit", DefShip+" has been hit... and it missed"],
-      ["turn","TURN OF "+Attship],
-      ["defeat",Attship+" lost."],
-      ["victory",Attship+" won."]
-    ];
-
-
-    console.log("this.alertTypeList.length: "+this.alertTypeList.length);
-    for(let x=0;x < this.alertTypeList.length;x++){
-      this.alertMainObject.push({
-        id: x,
-        type:this.alertTypeList[x][0],
-        content:this.alertTypeList[x][1]
-      });
-    }
-    console.log("this.alertMainObject.length: "+this.alertMainObject.length);
-
-
-
-    //Debut de addAlertInView
-    console.log("this.alertTypeList.length: ");
+    console.log("initialisation de 'addAlertInView()'");
     console.log(this.alertTypeList);
 
-    let x:number = 0;
 
-    console.log(this.alertMainObject);
+    if(id_owner == this.ts.PlayerShipTurn){
 
-    for(let aMO of this.alertMainObject){
-
-      if(alertName == aMO.type){
-        this.alertViewMainObjectList.push({
-          id: x,
-          type:aMO.type,
-          content:aMO.content
-        })
-      }
-      x++;
-    }
-
-
-  }
-
-
-
-  /**
-   * Initialise la liste des messages dans un tableau d'objets
-   */
-  initiateAlertDataListConversion(){
-    console.log("initiateAlertDataListConversion WORKS");
-    this.AlertMessagesArrays;
-
-    console.log("this.alertTypeList.length: "+this.alertTypeList.length);
-    for(let x=0;x < this.alertTypeList.length;x++){
-      this.alertMainObject.push({
-        id: x,
-        type:this.alertTypeList[x][0],
-        content:this.alertTypeList[x][1]
+      this.PlayerShipAlertList.forEach(obj =>{
+        if(obj.id_turnOwner == id_owner && obj.type == alertName){
+          this.alertMainListView.push({
+            id: obj.id,
+            id_turnOwner:obj.id_turnOwner,
+            type:obj.type,
+            content:obj.content
+          })
+        }
       });
+
+    } if(id_owner == this.ts.EnemyShipTurn){
+
+      this.EnemyShipAlertList.forEach(obj =>{
+        if(obj.id_turnOwner == id_owner && obj.type == alertName){
+          this.alertMainListView.push({
+            id: obj.id,
+            id_turnOwner:obj.id_turnOwner,
+            type:obj.type,
+            content:obj.content
+          })
+        }
+      });
+
     }
-    console.log("this.alertMainObject.length: "+this.alertMainObject.length);
-  }
+
+
+
+
+
+  } //addAlertInView
 
 
 
   /**
-   * initialise la liste des mesages
-   *
+   * Génère les alertes
    */
-  AlertMessagesArrays(){
+  generateAlerts() {
 
-    console.log("AlertMessagesArrays WORKS");
+    console.log("initialisation de 'generateAlerts()'");
 
-    let Attship,DefShip;
+    let Attship, DefShip;
     let pref = "The ";
-    if(this._actualTurnOwner == 1){
-      Attship = pref+this.pgs.playerShipName;
-      DefShip = pref+this.pgs.enemyShipName;
-    }else if(this._actualTurnOwner == 2){
-      DefShip = pref+this.pgs.playerShipName;
-      Attship = pref+this.pgs.enemyShipName;
-    }else if(this._actualTurnOwner == 3){
 
-    }
+    if (this.ts.PlayerShipTurn == 1) {
+      Attship = pref + this.ss.playerShipName;
+      DefShip = pref + this.ss.enemyShipName;
 
-    this.alertTypeList = [
-      ["spawn",pref+Attship+" has spawned on the map"],
-      ["start","The game is initialized"],
-      ["end","The game is ended"],
-      ["movement",Attship+" moved"],
-      ["attack",Attship+" attacked"],
-      ["gotHit",DefShip+" been hit"],
-      ["missHit", "...and it missed"],
-      ["turn","TURN OF "+Attship],
-      ["defeat",Attship+" lost."],
-      ["victory",Attship+" won."]
-    ];
 
+      this._alertTypeList = [
+        ["spawn", Attship + " has spawned on the map"],//1: type | 2:
+        ["start", "The game is initialized"],
+        ["end", "The game is ended"],
+        ["movement", Attship + " moved"],
+        ["attack", Attship + " attacked"],
+        ["gotHit", DefShip + " has been hit... successfully"],
+        ["missHit", DefShip + " has been hit... and it missed"],
+        ["turn", "TURN OF " + Attship],
+        ["defeat", Attship + " lost."],
+        ["victory", Attship + " won."]
+      ];
+
+
+      console.log("_alertTypeList.length: " + this._alertTypeList.length);
+      for (let x = 0; x < this._alertTypeList.length; x++) {
+        this.PlayerShipAlertList.push({
+          id_turnOwner: this.ts.PlayerShipTurn,
+          id: x,
+          type: this._alertTypeList[x][0],
+          content: this._alertTypeList[x][1]
+        });
+      }
+
+
+    } else if (this.ts.EnemyShipTurn == 2) {
+      DefShip = pref + this.ss.playerShipName;
+      Attship = pref + this.ss.enemyShipName;
+
+
+      this._alertTypeList = [
+        ["spawn", Attship + " has spawned on the map"],//1: type | 2:
+        ["start", "The game is initialized"],
+        ["end", "The game is ended"],
+        ["movement", Attship + " moved"],
+        ["attack", Attship + " attacked"],
+        ["gotHit", DefShip + " has been hit... successfully"],
+        ["missHit", DefShip + " has been hit... and it missed"],
+        ["turn", "TURN OF " + Attship],
+        ["defeat", Attship + " lost."],
+        ["victory", Attship + " won."]
+      ];
+
+
+      console.log("_alertTypeList.length: " + this._alertTypeList.length);
+      for (let x = 0; x < this._alertTypeList.length; x++) {
+        this.EnemyShipAlertList.push({
+          id_turnOwner: this.ts.EnemyShipTurn,
+          id: x,
+          type: this._alertTypeList[x][0],
+          content: this._alertTypeList[x][1]
+        });
+      }
+
+    } // end Else If
 
   }
-
 
 
   get alertTypeList(): any[] {
@@ -176,28 +166,31 @@ export class AlertSenderService {
     this._alertTypeList = value;
   }
 
-
-  get alertMainObject(): Array<{ id: number; type: string; content: string }> {
-    return this._alertMainObject;
+  get PlayerShipAlertList(): Array<{ id: number; id_turnOwner: number; type: string; content: string }> {
+    return this._PlayerShipAlertList;
   }
 
-  set alertMainObject(value: Array<{ id: number; type: string; content: string }>) {
-    this._alertMainObject = value;
+  set PlayerShipAlertList(value: Array<{ id: number; id_turnOwner: number; type: string; content: string }>) {
+    this._PlayerShipAlertList = value;
   }
 
-  get alertViewMainObjectList(): Array<{ id: number; type: string; content: string }> {
-    return this._alertViewMainObjectList;
+  get EnemyShipAlertList(): Array<{ id: number; id_turnOwner: number; type: string; content: string }> {
+    return this._EnemyShipAlertList;
   }
 
-  set alertViewMainObjectList(value: Array<{ id: number; type: string; content: string }>) {
-    this._alertViewMainObjectList = value;
+  set EnemyShipAlertList(value: Array<{ id: number; id_turnOwner: number; type: string; content: string }>) {
+    this._EnemyShipAlertList = value;
   }
 
-  get actualTurnOwner(): number {
-    return this._actualTurnOwner;
+  get alertMainListView(): Array<{ id: number; id_turnOwner: number; type: string; content: string }> {
+    return this._alertMainListView;
   }
 
-  set actualTurnOwner(value: number) {
-    this._actualTurnOwner = value;
+  set alertMainListView(value: Array<{ id: number; id_turnOwner: number; type: string; content: string }>) {
+    this._alertMainListView = value;
   }
+
+
+
+
 }
