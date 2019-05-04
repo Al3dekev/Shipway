@@ -3,6 +3,8 @@ import {PlayGameService} from "../../../services/play-game.service";
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {PlateauService} from "../../../services/plateau.service";
 import {forEach} from "@angular/router/src/utils/collection";
+import {ShipService} from "../../../services/ship.service";
+import {TurnService} from "../../../services/turn.service";
 
 @Component({
   selector: 'app-plateau',
@@ -18,7 +20,7 @@ export class PlateauComponent implements OnInit {
    * @param ps
    * @param as
    */
-  constructor(public ps:PlateauService, private as:AlertSenderService) {
+  constructor(public ps:PlateauService, private as:AlertSenderService, private ss:ShipService, private ts:TurnService) {
     this.transformPlateau();
 
     //This is a test, has to be deleted
@@ -135,24 +137,37 @@ export class PlateauComponent implements OnInit {
    * A mettre dans le constructor
    */
   turnSystem(){
+    if(this.ts.TurnOwner == 0){
+    while (this.ss.playerShipHealth == 0 || this.ss.enemyShipHealth == 0){
 
-    while (this.ps.playerShipHealth == 0 || this.ps.enemyShipHealth == 0){
 
-      if(this.ps.playerShipHealth != 0){
-        this.as.actualTurnOwner = 1;
-        this.as.addAlertInView("turn");
-        // actionBox: true sur var pour activer le pad de selection d'action | blocage de tour tant qu'il n'y a pas d'action selectionné
-        //
-        //flouter et desactiver (false) l'actionBox
-      } //end if player
 
-      if(this.ps.enemyShipHealth !== 0){
-        this.as.actualTurnOwner = 2;
-        this.as.addAlertInView("turn");
+        this.ts.TurnOwner = 1;
+        if(this.ss.playerShipHealth !== 0){
+          this.as.addAlertInView("turn");
+          // actionBox: true sur var pour activer le pad de selection d'action | blocage de tour tant qu'il n'y a pas d'action selectionné
+          //
+          //flouter et desactiver (false) l'actionBox
 
-      } // end if enemy
+        } //end if player
+        this.ts.TurnOwner = 2;
+        if(this.ss.enemyShipHealth !== 0){
+          this.as.actualTurnOwner = 2;
+          this.as.addAlertInView("turn");
 
-    } // turn while
+        } // end if enemy
+
+
+      }// turn while
+
+    if(this.ss.playerShipHealth == 0){q
+
+    }
+      if(this.ss.enemyShipHealth == 0){
+
+      }
+
+    }
 
 
   }

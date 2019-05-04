@@ -5,6 +5,7 @@ import {PlayGameService} from "../../../services/play-game.service";
 import {createHostBinding} from "@angular/compiler/src/core";
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {ShipService} from "../../../services/ship.service";
+import {PlateauService} from "../../../services/plateau.service";
 
 
 //@HostBinding(this.cssShipColor())
@@ -16,29 +17,14 @@ import {ShipService} from "../../../services/ship.service";
 })
 export class PlayerShipComponent extends Ship implements OnInit{
 
-  constructor(public ss:ShipService,private plateau:PlateauComponent,private alSender:AlertSenderService) {
+  constructor(public ss:ShipService,private ps:PlateauService,private alSender:AlertSenderService) {
     super();
-    this.alSender.addAlertInView("spawn");
-    console.log("initialisation de PLAYER SHIP");
-    this.action;
-    this.name = this.ss.playerShipName;
-    this.color = this.ss.playerShipColor;
-    this.ss.playerShipHealth = this.propHealness;
-    console.log(this.color)
   }
 
-  spawnShip(){
-      let equation = null;
-  }
 
-  cssShipColor(){
-    return {
-      "background-color":""+this.color+""
-    };
-  }
 
   shipLocationOnPlateau(){
-    let playerShip = this.plateau.plateauPlainNumberSize-this.plateau.plateauPlainNumberSize;
+    let playerShipLocation = this.ps.middleRowNumber;
 
   }
 
@@ -50,7 +36,14 @@ export class PlayerShipComponent extends Ship implements OnInit{
 
 
   ngOnInit() {
-
+    this.alSender.addAlertInView("spawn");
+    console.log("initialisation de PLAYER SHIP");
+    this.action;
+    this.name = this.ss.playerShipName;
+    this.color = this.ss.playerShipColor;
+    this.ss.playerShipHealth = this.propHealness;
+    console.log(this.color);
+    this.cssShipColor = "background-color: "+this.color+""
     //this.addShipAtFirstSpawnLocation
   }
 

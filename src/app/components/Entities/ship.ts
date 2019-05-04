@@ -1,15 +1,23 @@
 import {ShipService} from "../../services/ship.service";
+import {ArrayEntity} from "./ArrayEntity";
 
-export class Ship {
+export class Ship extends ArrayEntity {
 
 
   private _name:string;
   private _color:string;
   private _propHealness:number = 100;
   private _shipLocation:number;
+  private _cssShipColor:string;
+
+  private _spawnShip:void;
 
 
-  constructor(){}
+
+
+  constructor(){
+    super()
+  }
 
 
   get shipLocation(): number {
@@ -44,4 +52,19 @@ export class Ship {
     this._propHealness = value;
   }
 
+  get cssShipColor(): string {
+    return this._cssShipColor;
+  }
+
+  set cssShipColor(value: string) {
+    this._cssShipColor = value;
+  }
+
+  get spawnShip(): void {
+    return this._spawnShip;
+  }
+
+  set spawnShip(value: void) {
+    this._spawnShip = value;
+  }
 }
