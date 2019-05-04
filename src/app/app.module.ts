@@ -26,6 +26,10 @@ import { ActionBoxComponent } from './components/Entities/action-box/action-box.
 import { ModalPauseMenuComponent } from './components/Main/modal-pause-menu/modal-pause-menu.component';
 import { MovementButtonComponent } from './components/Entities/movement-button/movement-button.component';
 import { AttackButtonComponent } from './components/Entities/attack-button/attack-button.component';
+import {StartGameService} from "./services/start-game.service";
+import {ShipService} from "./services/ship.service";
+import {PlateauService} from "./services/plateau.service";
+import {TurnService} from "./services/turn.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +62,10 @@ import { AttackButtonComponent } from './components/Entities/attack-button/attac
     ScrollingModule
   ],
   providers: [
-    PlayGameService,
+    StartGameService,
+    ShipService,
+    PlateauService,
+    TurnService,
     IpcService
   ],
   bootstrap: [AppComponent]

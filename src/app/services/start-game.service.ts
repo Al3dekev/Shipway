@@ -4,13 +4,13 @@ import {ShipService} from "./ship.service";
 @Injectable({
   providedIn: 'root'
 })
-export class StartGameService extends ShipService{
+export class StartGameService{
 
-  private _EnteringConfigMenu:boolean = true; //Normally FALSE
+  private _EnteringConfigMenu:boolean = true; //Normally FALSE, set as TRUE for dev instances
   private _startTheGame:boolean = false;
 
-  constructor() {
-    super()
+  constructor(private ss:ShipService) {
+
   }
 
 

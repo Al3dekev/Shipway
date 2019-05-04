@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {PlayGameService} from "./play-game.service";
+import {ShipService} from "./ship.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,20 @@ export class AlertSenderService {
 
   private _alertTypeList:any[];
 
-  private _alertMainObject:Array<{id:number,type:string,content:string}> = [];
+  private _alertMainObject:Array<{
+    id:number,
+    type:string,
+    content:string
+  }> = [];
 
-  private _alertViewMainObjectList:Array<{id:number,type:string,content:string}> = [];
+  private _alertViewMainObjectList:Array<{
+    id_turnOwner:number,
+    type:string,
+    content:string
+  }> = [];
 
 
-  constructor(private pgs:PlayGameService) {
+  constructor(private ss:ShipService) {
     this.actualTurnOwner = 1;
 
 
@@ -39,11 +47,11 @@ export class AlertSenderService {
     //let spanPref = "<span style='font-style: italic;'>";
     //let spanSuff = "</span>";
     if(this._actualTurnOwner == 1){
-      Attship = pref+this.pgs.playerShipName;
-      DefShip = pref+this.pgs.enemyShipName;
+      Attship = pref+this.ss.playerShipName;
+      DefShip = pref+this.ss.enemyShipName;
     }else if(this._actualTurnOwner == 2){
-      DefShip = pref+this.pgs.playerShipName;
-      Attship = pref+this.pgs.enemyShipName;
+      DefShip = pref+this.ss.playerShipName;
+      Attship = pref+this.ss.enemyShipName;
     }else if(this._actualTurnOwner == 3){
 
     }

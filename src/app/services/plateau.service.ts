@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {StartGameService} from "./start-game.service";
-import {ActionService} from "../action.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlateauService extends StartGameService {
+export class PlateauService {
 
   /**
    * Status 0: Free Space
@@ -33,17 +32,28 @@ export class PlateauService extends StartGameService {
   private _columnSize:number;
   private _rowSize:number;
   private _plateauTileNumber:number;
+  private _middleRowNumber:number;
 
 
-  constructor() {
-    super();
-
+  constructor(private sgs:StartGameService) {
+    this.middleRowNumber = Math.round(this.rowSize / 2);
     this.columnSize = this.plateauTabSize[0];
     this.rowSize = this.plateauTabSize[1];
     this.plateauTileNumber = this.columnSize*this.rowSize;
 
 
   }
+
+  editLocation(id:number,newStatus:number){
+
+    this.plateauDynamicSize.forEach(obj => {
+      if(obj.id == id){
+        return obj.status = newStatus; // return isn't necessary right?
+      }
+    })
+
+  }
+
 
 
   get plateauDynamicSize(): Array<{ id: number; coo: { col: number; row: number }; status: number; has_wall: boolean; wall: { up: boolean; right: boolean; bottom: boolean; left: boolean } }> {
@@ -84,5 +94,13 @@ export class PlateauService extends StartGameService {
 
   set plateauTileNumber(value: number) {
     this._plateauTileNumber = value;
+  }
+
+  get middleRowNumber(): number {
+    return this._middleRowNumber;
+  }
+
+  set middleRowNumber(value: number) {
+    this._middleRowNumber = value;
   }
 }
