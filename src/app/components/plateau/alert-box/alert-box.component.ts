@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertSenderService} from "../../../services/alert-sender.service";
-import {PlayGameService} from "../../../services/play-game.service";
 
 @Component({
   selector: 'app-alert-box',
@@ -8,12 +7,6 @@ import {PlayGameService} from "../../../services/play-game.service";
   styleUrls: ['./alert-box.component.less']
 })
 export class AlertBoxComponent implements OnInit {
-
-
-
-
-
-
 
 
   constructor(public ats:AlertSenderService) {

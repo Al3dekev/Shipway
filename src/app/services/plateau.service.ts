@@ -28,7 +28,7 @@ export class PlateauService {
       left:boolean,
     },
   }> = [];
-  private _plateauTabSize:number[] = [5,5];
+  private _plateauTabSize:number[];
   private _columnSize:number;
   private _rowSize:number;
   private _plateauTileNumber:number;
@@ -36,6 +36,7 @@ export class PlateauService {
 
 
   constructor(private sgs:StartGameService) {
+    this.plateauTabSize = [5,5];
     this.middleRowNumber = Math.round(this.rowSize / 2);
     this.columnSize = this.plateauTabSize[0];
     this.rowSize = this.plateauTabSize[1];
@@ -44,10 +45,16 @@ export class PlateauService {
 
   }
 
-  editLocation(id:number,newStatus:number){
+  /**
+   *
+   * @param row
+   * @param col
+   * @param newStatus
+   */
+  editLocation(row:number,col:number,newStatus:number){
 
     this.plateauDynamicSize.forEach(obj => {
-      if(obj.id == id){
+      if(obj.coo.col == col && obj.coo.row == row){
         return obj.status = newStatus; // return isn't necessary right?
       }
     })

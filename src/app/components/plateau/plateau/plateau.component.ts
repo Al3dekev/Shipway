@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PlayGameService} from "../../../services/play-game.service";
 import {AlertSenderService} from "../../../services/alert-sender.service";
 import {PlateauService} from "../../../services/plateau.service";
-import {forEach} from "@angular/router/src/utils/collection";
 import {ShipService} from "../../../services/ship.service";
 import {TurnService} from "../../../services/turn.service";
 
@@ -21,14 +19,6 @@ export class PlateauComponent implements OnInit {
    * @param as
    */
   constructor(public ps:PlateauService, private as:AlertSenderService, private ss:ShipService, private ts:TurnService) {
-    this.transformPlateau();
-
-    //This is a test, has to be deleted
-    this.ps.plateauDynamicSize[5].status = 1;
-
-    this.turnSystem();
-
-
 
   }
 
@@ -144,7 +134,7 @@ export class PlateauComponent implements OnInit {
 
         this.ts.TurnOwner = 1;
         if(this.ss.playerShipHealth !== 0){
-          this.as.addAlertInView("turn");
+          this.as.addAlertInView(this.ts.PlayerShipTurn,"turn");
           // actionBox: true sur var pour activer le pad de selection d'action | blocage de tour tant qu'il n'y a pas d'action selectionné
           //
           //flouter et desactiver (false) l'actionBox
@@ -152,15 +142,14 @@ export class PlateauComponent implements OnInit {
         } //end if player
         this.ts.TurnOwner = 2;
         if(this.ss.enemyShipHealth !== 0){
-          this.as.actualTurnOwner = 2;
-          this.as.addAlertInView("turn");
+          this.as.addAlertInView(this.ts.EnemyShipTurn,"turn");
 
         } // end if enemy
 
 
       }// turn while
 
-    if(this.ss.playerShipHealth == 0){q
+    if(this.ss.playerShipHealth == 0){
 
     }
       if(this.ss.enemyShipHealth == 0){
@@ -228,6 +217,12 @@ export class PlateauComponent implements OnInit {
 
 
   ngOnInit() {
+    this.transformPlateau();
+
+    //This is a test, has to be deleted
+    this.ps.plateauDynamicSize[5].status = 1;
+
+    this.turnSystem();
 
   }
 
