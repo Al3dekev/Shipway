@@ -36,7 +36,8 @@ export class EntitySpawner implements OnInit{
    *
    * @param numEntityTurn
    */
-  spawnPlateauLocation(numEntityTurn:number){
+  spawnShipOnPlateau(numEntityTurn:number){
+
 
     this.ps.plateauDynamicSize.forEach(obj =>{
 
@@ -55,6 +56,30 @@ export class EntitySpawner implements OnInit{
       }
     });
 
+
+  }
+
+
+  spawnAttackBtn(){
+
+
+    //faire le systeme avec le arret si mur sur un coté concerné du déplacement
+    if(""){
+
+    }
+
+
+    while(""){
+
+    }
+
+    this.ps.plateauDynamicSize.forEach(obj =>{
+
+    })
+
+  }
+
+  spawnMoveBtn(){
 
   }
 

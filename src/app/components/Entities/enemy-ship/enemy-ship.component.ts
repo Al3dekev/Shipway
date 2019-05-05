@@ -11,18 +11,24 @@ import {TurnService} from "../../../services/turn.service";
 })
 export class EnemyShipComponent extends Ship implements OnInit {
 
-  constructor(public ss:ShipService, private alSender:AlertSenderService,private ts:TurnService) {
+  constructor(public ss:ShipService, private alSender:AlertSenderService,public ts:TurnService) {
     super();
 
   }
 
   ngOnInit() {
+
+    console.log("initialisation de ENEMY SHIP");
     this.alSender.addAlertInView(this.ts.EnemyShipTurn,"spawn");
-    console.log("initialisation de PLAYER SHIP");
+    this.entityType = this.ts.EnemyShipTurn;
+    this.checkSides();
     this.name = this.ss.enemyShipName;
     this.color = this.ss.enemyShipColor;
+    console.log(this.color);
     this.ss.enemyShipHealth = this.propHealness;
-    console.log(this.color)
+    //this.cssShipColor = "background-color: "+this.color+"";
+
+
   }
 
 }

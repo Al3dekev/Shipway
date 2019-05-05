@@ -15,7 +15,7 @@ import {TurnService} from "../../../services/turn.service";
 })
 export class PlayerShipComponent extends Ship implements OnInit{
 
-  constructor(public ss:ShipService,private ps:PlateauService,private alSender:AlertSenderService,private ts:TurnService) {
+  constructor(public ss:ShipService,public ps:PlateauService,private alSender:AlertSenderService,public ts:TurnService) {
     super();
   }
 
@@ -34,15 +34,22 @@ export class PlayerShipComponent extends Ship implements OnInit{
 
 
   ngOnInit() {
+
+      console.log("initialisation de PLAYER SHIP");
     this.alSender.addAlertInView(this.ts.PlayerShipTurn,"spawn");
-    console.log("initialisation de PLAYER SHIP");
-    this.action;
+    this.entityType = this.ts.PlayerShipTurn;
+    this.checkSides();
     this.name = this.ss.playerShipName;
     this.color = this.ss.playerShipColor;
+      console.log(this.color);
     this.ss.playerShipHealth = this.propHealness;
-    console.log(this.color);
-    this.cssShipColor = "background-color: "+this.color+""
-    //this.addShipAtFirstSpawnLocation
+    this.cssShipColor = "background-color: "+this.color+"";
+
+
+
+
+
+
   }
 
 }

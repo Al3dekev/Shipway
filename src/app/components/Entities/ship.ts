@@ -1,4 +1,3 @@
-import {ShipService} from "../../services/ship.service";
 import {ArrayEntity} from "./ArrayEntity";
 
 export class Ship extends ArrayEntity {
@@ -16,7 +15,7 @@ export class Ship extends ArrayEntity {
 
 
   constructor(){
-    super()
+    super();
   }
 
 
