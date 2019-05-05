@@ -29,6 +29,7 @@ import {StartGameService} from "./services/start-game.service";
 import {ShipService} from "./services/ship.service";
 import {PlateauService} from "./services/plateau.service";
 import {TurnService} from "./services/turn.service";
+import {ServiceLocator} from "./services/locator.service";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {TurnService} from "./services/turn.service";
     ShipService,
     PlateauService,
     TurnService,
-    IpcService
+    IpcService,
+    ServiceLocator
   ],
   bootstrap: [AppComponent]
 })
