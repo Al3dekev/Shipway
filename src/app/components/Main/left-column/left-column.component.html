@@ -12,9 +12,9 @@
   <!-- buttons -->
   <div class="menuBtnsBox" [ngStyle]="leftColumnStyleStateInConfig()" >
 
-    <button *ngIf="!pgs.startTheGame" mat-raised-button (click)="playGame()">Play Game</button>
+    <button *ngIf="!sgs.startTheGame" mat-raised-button (click)="playGame()">Play Game</button>
 
-    <button *ngIf="pgs.startTheGame" mat-raised-button>Pause Game</button>
+    <button *ngIf="sgs.startTheGame" mat-raised-button>Pause Game</button>
 
     <button mat-raised-button (click)="leaveGame()">Quit Game</button>
 
