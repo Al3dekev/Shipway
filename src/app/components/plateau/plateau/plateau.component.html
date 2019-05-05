@@ -9,7 +9,6 @@
 <div class="grid" [ngStyle]="cssGridProperties()">
   <div *ngFor="let TP of ps.plateauDynamicSize" class="element"><!--{{ TP.id }}-->
 
-
     <player-ship *ngIf="TP.status== 1"></player-ship> <!-- faire la meme pour les autres -->
     <enemy-ship *ngIf="TP.status== 2"></enemy-ship>
 

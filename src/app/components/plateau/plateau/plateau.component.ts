@@ -3,6 +3,7 @@ import {AlertSenderService} from "../../../services/alert-sender.service";
 import {PlateauService} from "../../../services/plateau.service";
 import {ShipService} from "../../../services/ship.service";
 import {TurnService} from "../../../services/turn.service";
+import {EntitySpawner} from "../../Entities/entitySpawner";
 
 @Component({
   selector: 'app-plateau',
@@ -11,12 +12,15 @@ import {TurnService} from "../../../services/turn.service";
 })
 export class PlateauComponent implements OnInit {
 
-  //No attributes
+  private _entitySpawner:EntitySpawner;
+
 
   /**
    *
    * @param ps
    * @param as
+   * @param ss
+   * @param ts
    */
   constructor(public ps:PlateauService, private as:AlertSenderService, private ss:ShipService, private ts:TurnService) {
 
@@ -31,20 +35,6 @@ export class PlateauComponent implements OnInit {
    */
   transformPlateau(){
 
-  /*
-  private _plateauDynamicSize: Array<{
-    id:number,
-    coo:number[],
-    status: number,
-    has_wall:boolean,
-    wall:[{
-      up:boolean,
-      right:boolean,
-      bottom:boolean,
-      left:boolean,
-    }],
-  }> = [];
-   */
 
     let r = 1;
     let c;
@@ -77,6 +67,8 @@ export class PlateauComponent implements OnInit {
       } //for C
     } // for R
 
+
+    //Mise en place des murs par cases
     r = 1;
     c = 1;
 
@@ -127,6 +119,8 @@ export class PlateauComponent implements OnInit {
    * A mettre dans le constructor
    */
   turnSystem(){
+    this.entitySpawner.spawnShipOnPlateau(this.ts.PlayerShipTurn);
+    this.entitySpawner.spawnShipOnPlateau(this.ts.EnemyShipTurn);
     if(this.ts.TurnOwner == 0){
     while (this.ss.playerShipHealth == 0 || this.ss.enemyShipHealth == 0){
 
@@ -214,13 +208,19 @@ export class PlateauComponent implements OnInit {
   */
 
 
+  get entitySpawner(): EntitySpawner {
+    return this._entitySpawner;
+  }
 
+  set entitySpawner(value: EntitySpawner) {
+    this._entitySpawner = value;
+  }
 
   ngOnInit() {
     this.transformPlateau();
 
     //This is a test, has to be deleted
-    this.ps.plateauDynamicSize[5].status = 1;
+    //this.ps.plateauDynamicSize[5].status = 1;
 
     this.turnSystem();
 
