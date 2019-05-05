@@ -64,6 +64,11 @@ export class EntitySpawner implements OnInit{
 
 
     //faire le systeme avec le arret si mur sur un coté concerné du déplacement
+
+
+    //var c+1 et r+1 pour chaque mises en place
+    //affecter ça sur chaque boucle for, contenant un for each pour chercher la coo concerné et lui ajouter l'element
+    //appliquer changement avec editLocation? dans ce cas ajouter les coo comme arg a editLocation
     if(""){
 
     }
