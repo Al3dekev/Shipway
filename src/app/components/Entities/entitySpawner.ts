@@ -63,7 +63,33 @@ export class EntitySpawner implements OnInit{
   spawnAttackBtn(){
 
 
-    //faire le systeme avec le arret si mur sur un coté concerné du déplacement
+
+    if("btn Attack in ActionBox selected"){
+
+      this.ps.plateauDynamicSize.forEach(obj =>{
+
+        //coo du ship (ou btn)
+        //etudier les murs autour du ship
+        //si has wall false, continuer
+        //si has_wall true, checker chaque mur
+        //si up = true, break
+        //else, faire +1 sur la coo en question pour faire déployer le nouveau bouton
+        //mettre la coo de objet nouvellement apparu comme coo de référence pour continuer la boucle et recommencer
+
+
+        while("current btn.up" !== "obj.wall.up"){
+
+        }
+
+
+      });
+      //up
+
+
+    }
+
+
+    //faire le systeme avec l'arret si mur sur un coté concerné du déplacement
 
 
     //var c+1 et r+1 pour chaque mises en place
