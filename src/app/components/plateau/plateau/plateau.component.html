@@ -9,11 +9,11 @@
 <div class="grid" [ngStyle]="cssGridProperties()">
   <div *ngFor="let TP of ps.plateauDynamicSize" class="element"><!--{{ TP.id }}-->
 
-    <player-ship *ngIf="TP.status== 1"></player-ship> <!-- faire la meme pour les autres -->
-    <enemy-ship *ngIf="TP.status== 2"></enemy-ship>
+    <player-ship *ngIf="TP.status== 1" [id_case]="TP.id"></player-ship> <!-- faire la meme pour les autres -->
+    <enemy-ship *ngIf="TP.status== 2" [id_case]="TP.id"></enemy-ship>
 
-    <movement-btn *ngIf="TP.status== 3"></movement-btn>
-    <attack-btn *ngIf="TP.status== 4"></attack-btn>
+    <movement-btn *ngIf="TP.status== 3" [id_case]="TP.id"></movement-btn>
+    <attack-btn *ngIf="TP.status== 4" [id_case]="TP.id"></attack-btn>
   </div>
 </div>
 

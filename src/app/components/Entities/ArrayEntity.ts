@@ -2,6 +2,7 @@ import {ShipService} from "../../services/ship.service";
 import {TurnService} from "../../services/turn.service";
 import {PlateauService} from "../../services/plateau.service";
 import {ServiceLocator} from "../../services/locator.service";
+import {Input} from "@angular/core";
 
 export class ArrayEntity {
 
@@ -9,6 +10,7 @@ export class ArrayEntity {
   private _right:boolean;
   private _bottom:boolean;
   private _left:boolean;
+  private _id_case:number;
 
   /**
    * 0: Free space, do not allow it as entityType ever
@@ -119,5 +121,14 @@ export class ArrayEntity {
 
   set ps(value: PlateauService) {
     this._ps = value;
+  }
+
+
+  get id_case(): number {
+    return this._id_case;
+  }
+
+  @Input() set id_case(value: number) {
+    this._id_case = value;
   }
 }

@@ -1,12 +1,50 @@
 import {OnInit} from "@angular/core";
 import {PlateauService} from "../../services/plateau.service";
 import {TurnService} from "../../services/turn.service";
+import {AttackButtonComponent} from "./attack-button/attack-button.component";
+import {PlayerShipComponent} from "./player-ship/player-ship.component";
+import {MovementButtonComponent} from "./movement-button/movement-button.component";
 
 
 export class EntitySpawner implements OnInit{
 
 
-  constructor(private ps:PlateauService, private ts:TurnService){
+  private _ObjRefDynamic:Array<{
+    upSide:{
+      has_wall:boolean,
+      id_case:number,
+      coo:{
+        col:number,
+        row:number
+      }
+    },
+    rightSide:{
+      has_wall:boolean,
+      id_case:number,
+      coo:{
+        col:number,
+        row:number
+      }
+    },
+    bottomSide:{
+      has_wall:boolean,
+      id_case:number,
+      coo:{
+        col:number,
+        row:number
+      }
+    },
+    leftSide:{
+      has_wall:boolean,
+      id_case:number,
+      coo:{
+        col:number,
+        row:number
+      }
+    }
+  }> = [];
+
+  constructor(private ps:PlateauService, private ts:TurnService, private attBtn:AttackButtonComponent, private playerShip:PlayerShipComponent, private MoveBtn:MovementButtonComponent){
 
   }
 
@@ -60,60 +98,145 @@ export class EntitySpawner implements OnInit{
   }
 
 
-  spawnAttackBtn(){
+  spawnAttackBtn() {
+
+    let cooObjRefToUpSide: number[];
+    let cooObjRefToRightSide: number[];
+    let cooObjRefToBottomSide: number[];
+    let cooObjRefToLeftSide: number[];
 
 
 
-    if("btn Attack in ActionBox selected"){
-
-      this.ps.plateauDynamicSize.forEach(obj =>{
-
-        //coo du ship (ou btn)
-        //etudier les murs autour du ship
-        //si has wall false, continuer
-        //si has_wall true, checker chaque mur
-        //si up = true, break
-        //else, faire +1 sur la coo en question pour faire déployer le nouveau bouton
-        //mettre la coo de objet nouvellement apparu comme coo de référence pour continuer la boucle et recommencer
+/*    cooObjRefToUpSide[0] = obj.coo.col;
+    cooObjRefToUpSide[1] = obj.coo.row;
+    cooObjRefToRightSide[0] = obj.coo.col;
+    cooObjRefToRightSide[1] = obj.coo.row;
+    cooObjRefToBottomSide[0] = obj.coo.col;
+    cooObjRefToBottomSide[1] = obj.coo.row;
+    cooObjRefToLeftSide[0] = obj.coo.col;
+    cooObjRefToLeftSide[1] = obj.coo.row;*/
 
 
-        while("current btn.up" !== "obj.wall.up"){
+      this.ps.plateauDynamicSize.forEach(obj => {
+
+        if (this.playerShip.id_case == obj.id) {
+
+          this.ObjRefDynamic.push({
+            upSide: {
+              has_wall: obj.wall.up,
+              id_case: obj.id,
+              coo: {
+                col: obj.coo.col,
+                row: obj.coo.row
+              }
+            },
+            rightSide: {
+              has_wall: obj.wall.right,
+              id_case: obj.id,
+              coo: {
+                col: obj.coo.col,
+                row: obj.coo.row
+              }
+            },
+            bottomSide: {
+              has_wall: obj.wall.bottom,
+              id_case: obj.id,
+              coo: {
+                col: obj.coo.col,
+                row: obj.coo.row
+              }
+            },
+            leftSide: {
+              has_wall: obj.wall.left,
+              id_case: obj.id,
+              coo: {
+                col: obj.coo.col,
+                row: obj.coo.row
+              }
+            }
+          });
+        }
+      });
+
+
+    this.ps.plateauDynamicSize.forEach(obj => {
+      this.ObjRefDynamic.forEach(cb =>{
+
+        if(cb.upSide.id_case == obj.id){
+
+
+          while(obj.wall.up != true){
+            cb.upSide.coo.row = cb.upSide.coo.row-1;
+
+            if(cb.upSide.id_case == obj.id){
+
+            }
+          }
+
 
         }
 
 
+
+
+
       });
-      //up
+    });
 
 
-    }
 
 
-    //faire le systeme avec l'arret si mur sur un coté concerné du déplacement
 
 
-    //var c+1 et r+1 pour chaque mises en place
-    //affecter ça sur chaque boucle for, contenant un for each pour chercher la coo concerné et lui ajouter l'element
-    //appliquer changement avec editLocation? dans ce cas ajouter les coo comme arg a editLocation
-    if(""){
 
-    }
+    /* while () {
+
+            while (cooObjRefToUpSide) {
+              this.ps.plateauDynamicSize.forEach(obj3 => {
+                if (obj3.coo.col == cooObjRefToUpSide[0] && obj3.coo.row == cooObjRefToUpSide[1] - 1) {
+
+                }
+              });
+            }
+
+            while (cooObjRefToBottomSide) {
+              this.ps.plateauDynamicSize.forEach(obj3 => {
+
+              });
+            }
+
+            while (cooObjRefToBottomSide) {
+              this.ps.plateauDynamicSize.forEach(obj3 => {
+
+              });
+            }
+
+            while (cooObjRefToBottomSide) {
+              this.ps.plateauDynamicSize.forEach(obj3 => {
+
+              });
+            }
 
 
-    while(""){
+          }*/
 
-    }
 
-    this.ps.plateauDynamicSize.forEach(obj =>{
 
-    })
+  } //method end
 
-  }
 
   spawnMoveBtn(){
 
   }
 
+
+  get ObjRefDynamic(): Array<{ upSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; rightSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; bottomSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; leftSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } } }> {
+    return this._ObjRefDynamic;
+  }
+
+  set ObjRefDynamic(value: Array<{ upSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; rightSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; bottomSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } }; leftSide: { has_wall: boolean; id_case: number; coo: { col: number; row: number } } }>) {
+    this._ObjRefDynamic = value;
+  }
 
   ngOnInit(): void {
 
