@@ -100,63 +100,10 @@ export class EntitySpawner implements OnInit{
 
   spawnAttackBtn() {
 
-    let cooObjRefToUpSide: number[];
-    let cooObjRefToRightSide: number[];
-    let cooObjRefToBottomSide: number[];
-    let cooObjRefToLeftSide: number[];
+  //Définir le 1er point de ref
+  this.editObjRef("ship",-1,-1);
 
 
-
-/*    cooObjRefToUpSide[0] = obj.coo.col;
-    cooObjRefToUpSide[1] = obj.coo.row;
-    cooObjRefToRightSide[0] = obj.coo.col;
-    cooObjRefToRightSide[1] = obj.coo.row;
-    cooObjRefToBottomSide[0] = obj.coo.col;
-    cooObjRefToBottomSide[1] = obj.coo.row;
-    cooObjRefToLeftSide[0] = obj.coo.col;
-    cooObjRefToLeftSide[1] = obj.coo.row;*/
-
-
-      this.ps.plateauDynamicSize.forEach(obj => {
-
-        if (this.playerShip.id_case == obj.id) {
-
-          this.ObjRefDynamic.push({
-            upSide: {
-              has_wall: obj.wall.up,
-              id_case: obj.id,
-              coo: {
-                col: obj.coo.col,
-                row: obj.coo.row
-              }
-            },
-            rightSide: {
-              has_wall: obj.wall.right,
-              id_case: obj.id,
-              coo: {
-                col: obj.coo.col,
-                row: obj.coo.row
-              }
-            },
-            bottomSide: {
-              has_wall: obj.wall.bottom,
-              id_case: obj.id,
-              coo: {
-                col: obj.coo.col,
-                row: obj.coo.row
-              }
-            },
-            leftSide: {
-              has_wall: obj.wall.left,
-              id_case: obj.id,
-              coo: {
-                col: obj.coo.col,
-                row: obj.coo.row
-              }
-            }
-          });
-        }
-      });
 
 
     this.ps.plateauDynamicSize.forEach(obj => {
@@ -166,7 +113,7 @@ export class EntitySpawner implements OnInit{
 
 
           while(obj.wall.up != true){
-            cb.upSide.coo.row = cb.upSide.coo.row-1;
+
 
             if(cb.upSide.id_case == obj.id){
 
@@ -223,6 +170,90 @@ export class EntitySpawner implements OnInit{
 
 
   } //method end
+
+
+  editObjRef(Side:string,cooCol:number,cooRow:number){
+    let idCaseRef:number;
+    console.log("this.ObjRefDynamic supposed to be deleted: "+this.ObjRefDynamic);
+    this.ps.plateauDynamicSize.forEach(obj => {
+
+      if(obj.coo.col == cooCol && obj.coo.row == cooRow){
+        idCaseRef = obj.id;
+      } else if(Side == "ship" && cooCol == -1 && cooRow == -1){
+        this.ObjRefDynamic.splice(0,1);
+        this.ObjRefDynamic.push({
+          upSide: {
+            has_wall: obj.wall.up,
+            id_case: obj.id,
+            coo: {
+              col: obj.coo.col,
+              row: obj.coo.row
+            }
+          },
+          rightSide: {
+            has_wall: obj.wall.right,
+            id_case: obj.id,
+            coo: {
+              col: obj.coo.col,
+              row: obj.coo.row
+            }
+          },
+          bottomSide: {
+            has_wall: obj.wall.bottom,
+            id_case: obj.id,
+            coo: {
+              col: obj.coo.col,
+              row: obj.coo.row
+            }
+          },
+          leftSide: {
+            has_wall: obj.wall.left,
+            id_case: obj.id,
+            coo: {
+              col: obj.coo.col,
+              row: obj.coo.row
+            }
+          }
+        }); //end ObjRefDynamic
+      }
+
+
+      this.ObjRefDynamic.forEach( obj2 => {
+
+        if(Side == "up" && idCaseRef == obj.id){
+          obj2.upSide.coo.row = obj2.upSide.coo.row-1;
+          if(obj2.upSide.coo.row == obj.coo.row && obj2.upSide.coo.col == obj.coo.col){
+            obj2.upSide.has_wall = obj.wall.up;
+            obj2.upSide.id_case = obj.id;
+          }
+        } else if(Side == "right" && idCaseRef == obj.id){
+          obj2.rightSide.coo.row = obj2.rightSide.coo.row-1;
+          if(obj2.rightSide.coo.row == obj.coo.row && obj2.rightSide.coo.col == obj.coo.col){
+            obj2.rightSide.has_wall = obj.wall.up;
+            obj2.rightSide.id_case = obj.id;
+          }
+        } else if(Side == "bottom" && idCaseRef == obj.id){
+          obj2.bottomSide.coo.row = obj2.bottomSide.coo.row-1;
+          if(obj2.bottomSide.coo.row == obj.coo.row && obj2.bottomSide.coo.col == obj.coo.col){
+            obj2.bottomSide.has_wall = obj.wall.up;
+            obj2.bottomSide.id_case = obj.id;
+          }
+        } else if(Side == "left" && idCaseRef == obj.id){
+          obj2.leftSide.coo.row = obj2.leftSide.coo.row-1;
+          if(obj2.leftSide.coo.row == obj.coo.row && obj2.leftSide.coo.col == obj.coo.col){
+            obj2.leftSide.has_wall = obj.wall.up;
+            obj2.leftSide.id_case = obj.id;
+          }
+        }
+
+
+      });
+
+
+
+    });
+  }
+
 
 
   spawnMoveBtn(){
