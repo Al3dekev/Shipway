@@ -176,6 +176,12 @@ export class EntitySpawner implements OnInit{
   }
 
 
+  /**
+   *
+   * @param Side
+   * @param cooCol
+   * @param cooRow
+   */
   editObjRef(Side:string,cooCol:number,cooRow:number){
     let idCaseRef:number;
     console.log("this.ObjRefDynamic supposed to be deleted: "+this.ObjRefDynamic);
@@ -260,9 +266,27 @@ export class EntitySpawner implements OnInit{
   }
 
 
-
+  /**
+   * ID 3
+   */
   spawnMoveBtn(){
 
+    this.ps.plateauDynamicSize.forEach(obj =>{
+      if(obj.status == 1){
+        if(!obj.wall.up){
+
+        }
+      }
+    })
+
+  }
+
+  unSpawnMoveBtn(){
+    this.ps.plateauDynamicSize.forEach( obj =>{
+      if(obj.status == 3){
+        obj.status = 0;
+      }
+    })
   }
 
 
