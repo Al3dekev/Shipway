@@ -4,6 +4,7 @@ import {TurnService} from "../../services/turn.service";
 import {AttackButtonComponent} from "./attack-button/attack-button.component";
 import {PlayerShipComponent} from "./player-ship/player-ship.component";
 import {MovementButtonComponent} from "./movement-button/movement-button.component";
+import {ActionService} from "../../services/action.service";
 
 
 export class EntitySpawner implements OnInit{
@@ -44,7 +45,7 @@ export class EntitySpawner implements OnInit{
     }
   }> = [];
 
-  constructor(private ps:PlateauService, private ts:TurnService, private attBtn:AttackButtonComponent, private playerShip:PlayerShipComponent, private MoveBtn:MovementButtonComponent){
+  constructor(private ps:PlateauService, private ts:TurnService, private as:ActionService, private attBtn:AttackButtonComponent){
 
   }
 
@@ -106,70 +107,73 @@ export class EntitySpawner implements OnInit{
 
 
 
-    this.ps.plateauDynamicSize.forEach(obj => {
+
       this.ObjRefDynamic.forEach(cb =>{
 
-        if(cb.upSide.id_case == obj.id){
 
 
-          while(obj.wall.up != true){
 
-
-            if(cb.upSide.id_case == obj.id){
-
-            }
+          while(cb.upSide.has_wall == false){
+            this.ps.plateauDynamicSize.forEach(obj => {
+              if (cb.upSide.id_case == obj.id) {
+                obj.status = 4;
+                this.editObjRef("up",obj.coo.col,obj.coo.row)
+              }
+            });
           }
-
-
+        while(cb.rightSide.has_wall == false){
+          this.ps.plateauDynamicSize.forEach(obj => {
+            if (cb.rightSide.id_case == obj.id) {
+              obj.status = 4;
+              this.editObjRef("up",obj.coo.col,obj.coo.row)
+            }
+          });
         }
-
-
+        while(cb.bottomSide.has_wall == false){
+          this.ps.plateauDynamicSize.forEach(obj => {
+            if (cb.bottomSide.id_case == obj.id) {
+              obj.status = 4;
+              this.editObjRef("up",obj.coo.col,obj.coo.row)
+            }
+          });
+        }
+        while(cb.leftSide.has_wall == false){
+          this.ps.plateauDynamicSize.forEach(obj => {
+            if (cb.leftSide.id_case == obj.id) {
+              obj.status = 4;
+              this.editObjRef("up",obj.coo.col,obj.coo.row)
+            }
+          });
+        }
+        let elm:number=0;
+        this.ps.plateauDynamicSize.forEach( obj =>{
+          if(obj.status == 4) {
+            elm++;
+            this.as.btnActionSelection.push({
+              id:elm,
+              id_case:this.attBtn.id_case,
+              selected:false,
+            });
+          }
+        })
 
 
 
       });
-    });
 
-
-
-
-
-
-
-    /* while () {
-
-            while (cooObjRefToUpSide) {
-              this.ps.plateauDynamicSize.forEach(obj3 => {
-                if (obj3.coo.col == cooObjRefToUpSide[0] && obj3.coo.row == cooObjRefToUpSide[1] - 1) {
-
-                }
-              });
-            }
-
-            while (cooObjRefToBottomSide) {
-              this.ps.plateauDynamicSize.forEach(obj3 => {
-
-              });
-            }
-
-            while (cooObjRefToBottomSide) {
-              this.ps.plateauDynamicSize.forEach(obj3 => {
-
-              });
-            }
-
-            while (cooObjRefToBottomSide) {
-              this.ps.plateauDynamicSize.forEach(obj3 => {
-
-              });
-            }
-
-
-          }*/
 
 
 
   } //method end
+
+
+  unSpawnAttBtn(){
+    this.ps.plateauDynamicSize.forEach( obj =>{
+      if(obj.status == 4){
+        obj.status = 0;
+      }
+    })
+  }
 
 
   editObjRef(Side:string,cooCol:number,cooRow:number){
@@ -179,7 +183,8 @@ export class EntitySpawner implements OnInit{
 
       if(obj.coo.col == cooCol && obj.coo.row == cooRow){
         idCaseRef = obj.id;
-      } else if(Side == "ship" && cooCol == -1 && cooRow == -1){
+      }
+      if(Side == "ship" && cooCol == -1 && cooRow == -1){
         this.ObjRefDynamic.splice(0,1);
         this.ObjRefDynamic.push({
           upSide: {

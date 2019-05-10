@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ArrayEntity} from "../ArrayEntity";
+import {ActionService} from "../../../services/action.service";
 
 @Component({
   selector: 'movement-btn',
@@ -8,8 +9,19 @@ import {ArrayEntity} from "../ArrayEntity";
 })
 export class MovementButtonComponent extends ArrayEntity implements OnInit {
 
-  constructor() {
+  constructor(private ActS:ActionService) {
     super();
+  }
+
+
+  clickOnBtn(){
+
+    this.ActS.btnActionSelection.forEach( obj =>{
+      if(obj.id_case == this.id_case){
+        obj.selected = true;
+      }
+    })
+
   }
 
   ngOnInit() {

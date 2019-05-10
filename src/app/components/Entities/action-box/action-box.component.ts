@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EntitySpawner} from "../entitySpawner";
+import {ActionService} from "../../../services/action.service";
 
 @Component({
   selector: 'app-action-box',
@@ -11,11 +12,12 @@ export class ActionBoxComponent implements OnInit{
 
 
 
-  constructor(private entitySpawn:EntitySpawner) {
+  constructor(private entitySpawn:EntitySpawner, private actS:ActionService) {
   }
 
     AttackAction() {
       this.entitySpawn.spawnAttackBtn();
+
     }
 
     MovementAction(){
